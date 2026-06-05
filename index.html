@@ -1,2023 +1,244 @@
 <!DOCTYPE html>
-<!--
-Universidad Nacional de Loja
-Carrera de Pedagogía de las Ciencias Experimentales Informática
-Plantilla para el prototipado semántico del Recurso Educativo de la Asignatura de Análisis y Diseño de Recursos Educativos
-Desarrollador: Marlon Maldonado González; Jonael Luna Álvarez
-Versión: 0.1
-Fecha: 06/05/2026
--->
-<html lang="es">
+<html lang="es" id="exe-index">
 <head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Prototipo de Recurso Educativo</title>
-    <style>
-        .slide-frame {
-            width: 80vw;
-            aspect-ratio: 16 / 9;
-            margin: 20px auto;
-            border: 2px solid #333;
-            background: white;
-            position: relative;
-        }
-        /* Estilos para el Mapa de Contenidos (Slide 3) */
-.index-container .nav-link-custom {
-    display: block;
-    padding: 12px 20px;
-    margin-bottom: 10px;
-    background-color: #ffffff;
-    border: 2px solid #e9ecef;
-    border-radius: 10px;
-    color: #0d6efd;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-.index-container .nav-link-custom:hover {
-    background-color: #f0f7ff;
-    border-color: #0d6efd;
-    transform: translateX(8px); /* Indicador visual DUA */
-}
-
-.index-container .nav-link-custom:focus {
-    outline: 4px solid #ffc107; /* Foco de alta visibilidad para accesibilidad */
-    background-color: #fff3cd;
-}
-
-.theme-badge {
-    font-size: 0.75rem;
-    background: #6c757d;
-    color: white;
-    padding: 2px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    margin-right: 10px;
-}
-/* Estilos para la comparativa de fuentes (Pantalla 4) */
-.source-comparison-card {
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-    height: 100%;
-}
-.source-comparison-card:hover {
-    transform: translateY(-5px);
-}
-.badge-criteria {
-    font-size: 0.75rem;
-    background-color: #0d6efd;
-    color: white;
-    padding: 3px 10px;
-    border-radius: 15px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-.table-comparison {
-    font-size: 0.85rem;
-}
-.table-comparison th {
-    background-color: #f8f9fa;
-    width: 30%;
-}
-        /* Estilos para el análisis de fuentes sobre el Islam (P6) */
-.editor-badge {
-    background-color: #198754;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-.research-note {
-    background-color: #f4faf6;
-    border-left: 5px solid #198754;
-    padding: 15px;
-    font-size: 0.9rem;
-}
-.islam-step-content {
-    border-bottom: 2px solid #e9ecef;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-        /* Estilos para el Reto de Análisis (Slide 7) */
-.card-analysis {
-    border: 2px solid #198754;
-    border-radius: 15px;
-    background-color: #fdfdfd;
-}
-.btn-option {
-    border: 2px solid #198754;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-.btn-option:hover {
-    background-color: #e8f5e9;
-    transform: scale(1.05);
-}
-.progress-reto {
-    height: 12px;
-    border-radius: 10px;
-    background-color: #e9ecef;
-}
-        /* Estilos para el Directorio de Fuentes y Contenido Cristiano (P8) */
-.source-directory {
-    background-color: #f0f4f8;
-    border-radius: 10px;
-    padding: 15px;
-    border: 1px solid #0d6efd;
-}
-.source-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    font-size: 0.85rem;
-}
-.research-alert {
-    background-color: #fff3cd;
-    border-left: 5px solid #ffc107;
-    padding: 10px;
-    font-size: 0.9rem;
-}
-        /* Estilos para la Investigación Objetiva de la Ética (P10) */
-.objectivity-badge {
-    background-color: #198754;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-.research-card {
-    background-color: #f8f9fa;
-    border-left: 5px solid #198754;
-    padding: 15px;
-    border-radius: 0 10px 10px 0;
-}
-.ethics-card {
-    transition: transform 0.3s ease, background-color 0.3s;
-    border: 2px solid #dee2e6;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 10px;
-}
-.ethics-card:hover {
-    background-color: #e8f5e9;
-    transform: scale(1.03);
-    border-color: #198754;
-}
-/* Estilos para el Análisis Comparativo Científico (P12) */
-.impact-badge {
-    background-color: #6f42c1;
-    color: white;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: bold;
-}
-.scientific-note {
-    font-size: 0.8rem;
-    background-color: #f3f0ff;
-    border-left: 4px solid #6f42c1;
-    padding: 10px;
-    margin-top: 10px;
-}
-.table-scientific th {
-    background-color: #212529 !important;
-    color: white;
-}
-        /* Configuración para Exportar/Imprimir  */
-@media print {
-    /* Ocultar controles de navegación web durante la impresión */
-    nav, .btn, #slide-indicator, footer button {
-        display: none !important;
-    }
-    /* Mostrar todas las diapositivas para la exportación completa */
-    .slide-frame {
-        display: block !important;
-        width: 100% !important;
-        height: auto !important;
-        margin: 0 !important;
-        border: none !important;
-        page-break-after: always; /* Una diapositiva por página */
-        box-shadow: none !important;
-    }
-    body { background: white !important; }
-}
-
-/* Mejora de botones descriptivos (DUA) */
-.nav-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding-top: 15px;
-    border-top: 1px solid #dee2e6;
-}
-        .crossword-container {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr); /* Ajustado a las palabras: JUSTICIA, HONRADEZ */
-    gap: 5px;
-    max-width: 450px;
-    margin: 0 auto;
-}
-.crossword-cell {
-    aspect-ratio: 1 / 1;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: 2px solid #333;
-    background-color: #fff;
-}
-.crossword-cell:focus {
-    outline: 4px solid #0d6efd; /* Alta visibilidad para DUA */
-    background-color: #eaf2ff;
-}
-.clue-list {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 15px;
-}
-.cell-null {
-    background-color: #333;
-    border: none;
-}
-/* Estilos para Emparejamiento Crítico (Slide 13) */
-.match-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-.match-item {
-    padding: 12px;
-    border: 2px solid #0d6efd;
-    border-radius: 8px;
-    background: #fff;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 0.95rem;
-    text-align: left;
-    width: 100%;
-}
-.match-item:hover { background: #f0f7ff; border-color: #0056b3; }
-.match-item.selected { background: #0d6efd; color: #fff; }
-.match-item.correct { background: #198754; color: #fff; border-color: #146c43; cursor: default; }
-.match-item.error { animation: shake 0.4s; border-color: #dc3545; }
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-    /* Estilos para la Evaluación Sumativa (P14) */
-.eval-card {
-    background-color: #fcfcfc;
-    border: 2px solid #0d6efd;
-    border-radius: 15px;
-    min-height: 280px;
-}
-.option-btn {
-    text-align: left;
-    font-size: 1.1rem;
-    padding: 15px;
-    margin-bottom: 10px;
-    border: 2px solid #dee2e6;
-    transition: all 0.3s ease;
-    width: 100%;
-}
-.option-btn:hover {
-    background-color: #e9f2ff;
-    border-color: #0d6efd;
-    transform: scale(1.02);
-}
-.timer-box {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #dc3545;
-    background: #fff;
-    padding: 5px 15px;
-    border-radius: 50px;
-    border: 2px solid #dc3545;
-}
-.eval-intro {
-    background: #e7f1ff;
-    border-radius: 12px;
-    padding: 25px;
-}
-/* Ajustes para Evaluación Sumativa P14 */
-.score-display {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #198754;
-}
-.error-penalty {
-    color: #dc3545;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-.option-btn:focus {
-    outline: 4px solid #ffc107 !important; /* Amarillo de alta visibilidad */
-    background-color: #fff3cd;
-    color: #000;
-}
-    /* Estilos para la Pantalla de Bibliografía (P15) */
-.apa-reference {
-    padding-left: 2em; /* Sangría francesa */
-    text-indent: -2em;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-    text-align: justify;
-    font-size: 1rem;
-}
-
-.apa-reference a {
-    color: #0d6efd;
-    text-decoration: underline;
-    word-wrap: break-word; /* Evita que los enlaces largos rompan el diseño 16:9 */
-}
-
-.closing-message {
-    background-color: #f8f9fa;
-    border-top: 4px solid #333;
-}
-    /* Estilos específicos para la Sopa de Letras (P5) */
-.soup-grid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 4px;
-}
-.letter-btn {
-    aspect-ratio: 1 / 1;
-    border: 1px solid #ced4da;
-    background: #fff;
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: all 0.2s;
-    border-radius: 4px;
-}
-.letter-btn:hover { background: #f8f9fa; border-color: #0d6efd; }
-.letter-btn:focus { outline: 3px solid #ffc107; z-index: 2; }
-.letter-btn.selected { background-color: #0d6efd; color: #fff; }
-.letter-btn.found { background-color: #198754; color: #fff; cursor: default; }
-
-.clue-box-source {
-    border-left: 5px solid #0d6efd;
-    background-color: #f0f7ff;
-}
-    </style>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-nc/4.0/">
+<title>Historia, Historiografía y Cultura: Métodos y Ética de la Investigación.</title>
+<link rel="icon" type="image/x-icon" href="libs/favicon.ico">
+<script>document.querySelector("html").classList.add("js");</script><script src="libs/jquery/jquery.min.js"> </script><script src="libs/common_i18n.js"> </script><script src="libs/common.js"> </script><script src="libs/exe_export.js"> </script><script src="search_index.js"> </script><script src="libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
+<script src="idevices/text/text.js"></script><link rel="stylesheet" href="idevices/text/text.css">
+<script src="libs/exe_atools/exe_atools.js"> </script><link rel="stylesheet" href="libs/exe_atools/exe_atools.css">
+<link rel="stylesheet" href="content/css/base.css"><script src="theme/style.js"> </script><link rel="stylesheet" href="theme/style.css">
 </head>
-<body class="bg-light">
-
-    <!-- Controles de Navegación -->
-    <nav class="text-center my-3" aria-label="Controles de Pantallas">
-        <button onclick="changeSlide(-1)" class="btn btn-outline-dark">Anterior</button>
-        <span id="slide-indicator" aria-live="polite" class="mx-3">Pantalla 1 de 3</span>
-        <button onclick="changeSlide(1)" class="btn btn-outline-dark">Siguiente</button>
-    </nav>
-    <!-- Cierre de los Controles de Navegación -->
-    <main id="presentation-container">
-
-<!-- Pantalla 1: Portada Institucional -->
-<section id="slide-1" class="slide-frame shadow-lg p-4 p-md-5" role="region" aria-label="Portada del Recurso" tabindex="-1">
-
-    <div class="container-fluid h-100 d-flex flex-column">
-        <!-- Encabezado de la Carrera (Fuente 1) -->
-        <header class="row unl-header mb-3 pb-2 align-items-center">
-            <div class="col-md-2 text-center d-none d-md-block">
-                <img src="img/logo.jpeg" alt="Logo Universidad Nacional de Loja" class="img-fluid" style="max-height: 80px;">
-            </div>
-            <div class="col-md-10 text-center text-md-start">
-                <h1 class="fs-5 fs-md-4 mb-0 fw-bold">UNIVERSIDAD NACIONAL DE LOJA</h1>
-                <p class="fs-6 fs-md-5 mb-0 text-muted">FACULTAD DE LA EDUCACIÓN, EL ARTE Y LA COMUNICACIÓN</p>
-                <p class="career-title fs-6 mb-0">CARRERA DE PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES INFORMÁTICA</p>
-            </div>
-        </header>
-
-        <!-- Cuerpo Principal: Título y Datos -->
-        <main class="row flex-grow-1 align-items-center py-2">
-            <!-- Título del Recurso y Objetivo -->
-            <div class="col-md-7 border-end-md pe-md-4 mb-3 mb-md-0">
-                <h2 class="resource-title fs-2 fs-md-1 fw-bolder mb-2">La Hermandad Rota</h2>
-                <h3 class="fs-6 fs-md-5 text-secondary mb-0">Tema 4: Principios comunes y diferencias fundamentales entre el judaísmo, el cristianismo y el islamismo.</h3>
-            </div>
-                
-            <!-- Datos Informativos -->
-            <div class="col-md-5 ps-md-4">
-                <div class="p-3 rounded-3 shadow-sm border bg-light-subtle small">
-                    <p class="mb-1"><strong>Asignatura:</strong> Análisis y Diseño de Recursos Educativos</p>
-                    <p class="mb-1"><strong>Autor:</strong> Jonael Alejandro Luna Alvarez</p>
-                    <p class="mb-1"><strong>Docente:</strong> Mgtr. Marlon Alexander Maldonado González</p>
-                    <hr class="my-2">
-                    <div class="d-flex justify-content-between">
-                        <span><strong>Ciclo:</strong> 4º</span>
-                        <span><strong>Periodo:</strong> Abril - Agosto 2026</span>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-<!-- Pie de página con recordatorio de navegación -->
-<footer class="row mt-auto border-top pt-3">
-    <div class="col-12 d-flex justify-content-between align-items-center">
-        <div class="text-start">
-            <p class="text-muted small mb-0">Presione <strong>'Siguiente'</strong> en los controles para iniciar.</p>
-        </div>
-        <div class="text-end">
-            <!-- Botón de Exportación con ID descriptivo para DUA (Norma UNE 15) -->
-            <button onclick="exportResource()" class="btn btn-danger btn-sm shadow-sm" aria-label="Descargar todo el recurso en formato PDF">
-                📥 Descargar Recurso (PDF)
-            </button>
-        </div>
-    </div>
-
-    <!-- Declaración de Licencia y Uso de IA (Cumple UNE: Calidad de Contenidos) -->
-    <div class="row mt-3">
-        <div class="col-12 text-center">
-            <div class="p-2 border rounded bg-white shadow-sm" style="font-size: 0.75rem;">
-                <p class="mb-1">
-                    <strong>Licencia:</strong> Este recurso se distribuye bajo 
-                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.
-                </p>
-                <p class="mb-0 text-muted italic">
-                    <strong>Nota:</strong> Las imágenes y audios de este REDA han sido generados y curados mediante herramientas de Inteligencia Artificial (Microsoft Copilot y Google Studio).
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>
-    </div>
-</section>
-<!-- Fin Pantalla 1 -->
-
-<!-- Pantalla 2: Portada del recurso -->
-<section id="slide-2" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="Introducción y Metas de Aprendizaje" tabindex="-1">
-
-    <div class="container-fluid h-100 d-flex flex-column">
-        <!-- Cabecera de la Pantalla -->
-        <header class="row mb-3">
-            <div class="col-12 text-center border-bottom pb-2">
-                <h1 class="fs-3 fs-md-2 fw-bold text-uppercase mb-1">La Hermandad Rota</h1>
-                <h2 class="fs-5 fs-md-4 text-secondary mb-0">Investigación Ética sobre las Religiones Monoteístas</h2>
-            </div>
-        </header>
-
-        <!-- Contenido Central -->
-        <main class="row flex-grow-1 align-items-stretch py-2">
-            <!-- Columna Izquierda: Perfil y Criterio Técnico -->
-            <div class="col-md-4 border-end-md pe-md-3 mb-3 mb-md-0">
-                <h3 class="fs-5 bloom-header">Perfil del Recurso</h3>
-                <div class="mb-3 small">
-                    <p class="mb-2"><strong>Nivel Educativo:</strong><br>2.º de Bachillerato (BGU).</p>
-                    <p class="mb-2"><strong>Edad:</strong><br>15 - 16 años.</p>
-                    <hr>
-                    <p class="mb-0 text-muted italic">Enfoque: Este recurso busca que el estudiante valide información científica antes de argumentar dogmas de fe.</p>
-                </div>
-            </div>
-
-            <!-- Columna Derecha: Propósito e Integración de Destrezas -->
-            <div class="col-md-8 ps-md-4">
-                <h3 class="fs-5 bloom-header">Propósito Pedagógico</h3>
-                
-                <h4 class="fs-6 fw-bold text-primary mb-2">Objetivo de Aprendizaje</h4>
-                <div class="p-3 bg-light border border-primary rounded mb-3">
-                    <p class="small mb-0 text-justify">
-                        <strong>Aplicar técnicas de investigación y criterios éticos de confiabilidad</strong> (arbitraje e indexación) para <strong>argumentar los principios comunes y diferencias</strong> entre el judaísmo, cristianismo e islamismo, superando el uso de fuentes no verificadas (Ref. CS.H.5.1.6. y CS.H.5.2.18).
-                    </p>
-                </div>
-
-                <h4 class="fs-6 fw-bold text-success mb-2">Logros de Aprendizaje Esperados</h4>
-                <ul class="achievement-list small">
-                    <li class="achievement-item shadow-sm">
-                        <strong>Evaluar</strong> la objetividad y actualidad de la producción académica sobre el islam y el cristianismo, contrastando documentos magisteriales con artículos científicos para detectar posibles sesgos ideológicos
-                    </li>
-                    <li class="achievement-item shadow-sm">
-                        <strong>Analizar</strong> la confiabilidad de las fuentes documentales mediante el examen de criterios de arbitraje e indexación para fundamentar los pilares y prácticas de fe monoteístas.
-                    </li>
-                    <li class="achievement-item shadow-sm">
-                        <strong>Argumentar</strong> de forma ética las similitudes y diferencias doctrinales entre las fes abrahámicas, integrando indicadores de impacto (JCR, SJR) para sustentar la validez de los hallazgos en el contexto de la justicia social.
-                    </li>
-                </ul>
-            </div>
-        </main>
-
-        <!-- Pie de página de la Pantalla (UNE: Navegación clara) -->
-        <footer class="row mt-auto">
-            <div class="col-12 text-center text-muted">
-                <hr class="my-2">
-                <p class="small mb-0">Use el botón <strong>'Siguiente'</strong> para conocer las fuentes de consulta del primer tema.</p>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 2 -->
-
-<!-- Pantalla 3: Índice de contenidos -->
-<section id="slide-3" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="Menú Principal de Contenidos" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <header class="row mb-3">
-            <div class="col-12">
-                <h1 class="h2 fw-bold text-primary text-uppercase border-bottom pb-2">Mapa de Contenidos</h1>
-                <p class="small text-muted">Seleccione una sección para explorar los contenidos y las técnicas de investigación aplicadas.</p>
-            </div>
-        </header>
-
-        <nav class="row flex-grow-1 overflow-auto" aria-label="Índice temático">
-            <div class="col-md-10 offset-md-1 index-container">
-                <ul class="list-unstyled">
-                    <!-- TEMA 4.1: Pilares y Fuentes -->
-                    <li class="mb-4">
-                        <h2 class="h5 fw-bold text-dark mb-3"><span class="theme-badge">Tema 4.1</span>Fuentes para Pilares y Prácticas de Fe</h2>
-                        <div class="row g-2 ps-3 border-start border-3 border-primary">
-                            <div class="col-md-4">
-                                <a href="javascript:void(0)" onclick="goToSlide(4)" class="nav-link-custom shadow-sm" aria-label="Ir a: El Judaísmo y sus fuentes escritas">1.1 El Judaísmo</a>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="javascript:void(0)" onclick="goToSlide(6)" class="nav-link-custom shadow-sm" aria-label="Ir a: El Islam y la validez del Corán">1.2 El Islam</a>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="javascript:void(0)" onclick="goToSlide(8)" class="nav-link-custom shadow-sm" aria-label="Ir a: El Cristianismo y los sacramentos">1.3 El Cristianismo</a>
-                            </div>
-                        </div>
-                    </li>
-                    
-                    <!-- TEMA 4.2: Ética y Objetividad -->
-                    <li class="mb-3">
-                        <h2 class="h5 fw-bold text-dark mb-2"><span class="theme-badge">Tema 4.2</span>Investigación Objetiva de Ética y Sociedad</h2>
-                        <a href="javascript:void(0)" onclick="goToSlide(10)" class="nav-link-custom shadow-sm" aria-label="Ir a: Cómo investigar éticas monoteístas de forma objetiva">
-                            Valores compartidos y criterios de autoría científica
-                        </a>
-                    </li>
-
-                    <!-- TEMA 4.3: Contraste Científico -->
-                    <li class="mb-4">
-                        <h2 class="h5 fw-bold text-dark mb-2"><span class="theme-badge">Tema 4.3</span>Análisis Comparativo y Documentos Científicos</h2>
-                        <a href="javascript:void(0)" onclick="goToSlide(12)" class="nav-link-custom shadow-sm" aria-label="Ir a: Contraste de dogmas mediante artículos indexados">
-                            Similitudes y diferencias validadas por revisión por pares
-                        </a>
-                    </li>
-                    
-                    <!-- Cierre y Evaluación -->
-                    <li class="mt-4 pt-3 border-top">
-                        <div class="d-flex gap-3">
-                            <a href="javascript:void(0)" onclick="goToSlide(14)" class="btn btn-primary w-50 py-2 fw-bold shadow">📝 Iniciar Evaluación Final Sumativa</a>
-                            <a href="javascript:void(0)" onclick="goToSlide(15)" class="btn btn-outline-dark w-50 py-2 fw-bold shadow-sm">📚 Fuentes consultadas</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <footer class="row mt-auto pt-2">
-            <div class="col-12 text-center">
-                <p class="small text-muted mb-0 italic">Utilice el teclado o el mouse para navegar. Su progreso se guarda automáticamente.</p>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 3 -->
-
-<!-- Pantalla 4: Fuentes para consultar Pilares y Prácticas de Fe -->
-<section id="slide-4" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="4.1 Fuentes de Investigación sobre la Fe" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <!-- Encabezado -->
-        <header class="row mb-3">
-            <div class="col-12">
-                <h1 class="h3 text-primary fw-bold border-bottom pb-2">4.1. Fuentes de Consulta: Pilares y Prácticas de Fe</h1>
-                <img src="img/torá.png" alt="Rollo de la Torá abierto en vertical sobre fondo 
-blanco con texto denso en hebreo." class="img-fluid rounded shadow-sm" style="max-height: 
-90px;">
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 overflow-auto py-2">
-            <!-- Introducción y Argumentación Técnica -->
-            <div class="col-md-5 border-end pe-md-4">
-                <p class="small text-justify mb-3">
-                    Investigar los dogmas de las religiones monoteístas requiere <strong>ética documental</strong>. No basta con leer blogs; un investigador debe validar el <strong>prestigio del autor</strong> y el <strong>arbitraje</strong> de la obra.
-                </p>
-                <div class="p-3 bg-light rounded-3 shadow-sm border-start border-4 border-primary">
-                    <h2 class="h6 fw-bold">¿Por qué usar fuentes académicas?</h2>
-                    <p class="x-small mb-0 italic">
-                        El contenido sobre la <strong>Torá</strong>, el <strong>Corán</strong> o la <strong>Vida en Gracia</strong> [3] posee rigor científico cuando ha pasado por una <strong>revisión por pares</strong>, garantizando que el conocimiento no sea subjetivo sino validado por expertos.
-                    </p>
-                </div>
-                <!-- Audio complementario -->
-                <div class="mt-3">
-                    <p class="x-small fw-bold mb-1">🔊 Análisis de confiabilidad:</p>
-                    <audio controls class="w-100"><source src="audios/Subtema_1.mp3" type="audio/mpeg"></audio>
-                </div>
-            </div>
-
-            <!-- Comparativa Técnica de Fuentes -->
-            <div class="col-md-7 ps-md-4">
-                <h2 class="h6 fw-bold text-secondary text-uppercase mb-3">Comparativa de Fuentes para el Estudio de la Fe</h2>
-                <div class="table-responsive">
-                    <table class="table table-sm table-comparison border shadow-sm">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Tipo de Fuente</th>
-                                <th>Uso en Pilares de Fe [3]</th>
-                                <th>Criterio Técnico</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="fw-bold">Obras de Referencia</td>
-                                <td>Contexto sobre el <strong>Tanaj</strong> y diccionarios de términos árabes.</td>
-                                <td>Evaluadas por su <strong>cubrimiento temático</strong> y prestigio del editor.</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Revistas Indexadas</td>
-                                <td>Análisis del impacto social del <strong>Ramadán</strong> o los <strong>sacramentos</strong>.</td>
-                                <td>Garantizan flujo constante de conocimiento con <strong>arbitraje par ciego</strong>.</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Libros Técnicos</td>
-                                <td>Tratados sobre la interpretación de la <strong>Torá</strong> en el Talmud.</td>
-                                <td>Validados por la <strong>formación científica</strong> del autor y seriedad teórica.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p class="x-small text-muted mt-2">
-                    <strong>Nota:</strong> Para argumentar principios comunes [3], se deben preferir artículos en bases de datos como <strong>Web of Science</strong> o <strong>Scopus</strong> por su alto índice de impacto.
-                </p>
-            </div>
-        </main>
-
-        <!-- Navegación con etiquetas descriptivas -->
-        <footer class="row mt-auto pt-3 border-top">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <button onclick="goToSlide(3)" class="btn btn-outline-primary btn-sm">🏠 Ir al menú principal</button>
-                <div class="text-center flex-grow-1">
-                    <p class="small mb-0">¿Listo para buscar estas fuentes en el reto?</p>
-                </div>
-                <button onclick="changeSlide(1)" class="btn btn-primary btn-sm shadow-sm" aria-label="Ir al reto de sopa de letras">
-                    Ir al Reto: Investigación de Fe ➡
-                </button>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 4 -->
-
-<!-- Pantalla 5: Reto de Validación de Fuentes y Fe -->
-<section id="slide-5" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="Actividad: Validación de Fuentes" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        
-        <!-- Feedback de Logro (Accesibilidad ARIA) -->
-        <div id="final-feedback" class="d-none alert alert-success shadow-sm mb-3" role="status">
-            <h2 class="h5 fw-bold mb-0">🎉 ¡Fuentes Validadas Correctamente!</h2>
-        </div>
-
-        <header class="row mb-3" id="game-header">
-            <div class="col-12">
-                <h1 class="h3 text-primary fw-bold text-uppercase border-bottom">Reto 4.1: Investigación Ética</h1>
-                <p class="small text-muted mb-0"><strong>Instrucción:</strong> Identifique los criterios de confiabilidad para investigar la fe judía. Use el mouse o para usuarios de teclado, use las flechas direccionales para encontrar la letra correspondiente y marque con espacio la que crea es correcta. Se el indicará en la parte superior si ha completado las palabras</p>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 align-items-center overflow-auto">
-            <!-- Pistas de Investigación -->
-            <div class="col-md-5">
-                <h2 class="h6 fw-   bold text-secondary mb-3">Criterios de Confiabilidad de la Fuente:</h2>
-                <div class="list-group mb-3">
-                    <div class="list-group-item clue-box-source p-2 mb-2 shadow-sm">
-                        <strong>1. </strong> Eje del judaísmo cuya información debe extraerse de <strong>Obras de Referencia</strong> confiables.
-                    </div>
-                    <div class="list-group-item clue-box-source p-2 mb-2 shadow-sm border-success" style="background-color: #f4faf6;">
-                        <strong>2. </strong> Método de <strong>revisión por expertos</strong> que garantiza la validez de un escrito científico.
-                    </div>
-                    <div class="list-group-item clue-box-source p-2 mb-2 shadow-sm border-warning" style="background-color: #fffdf2;">
-                        <strong>3. </strong> Publicación calificada por organismos como <strong>Thompson Reuters</strong> para asegurar su calidad.
-                    </div>
-                </div>
-                <button onclick="resetSoup()" class="btn btn-outline-danger btn-sm shadow-sm" aria-label="Reiniciar actividad">🔄 Reiniciar Reto</button>
-            </div>
-
-            <!-- Grilla Interactiva -->
-            <div class="col-md-7">
-                <div class="mb-2 p-2 bg-white border rounded shadow-sm">
-                    <span class="small fw-bold">Hallazgos técnicos:</span>
-                    <div id="found-words-list" class="d-flex flex-wrap gap-2 mt-1" aria-live="polite">
-                        <span class="text-muted small italic">Buscando términos en la fuente...</span>
-                    </div>
-                </div>
-                <div class="soup-grid" id="soup-grid" role="grid" aria-label="Tablero de letras: términos de investigación">
-                    <!-- Los botones se generan dinámicamente -->
-                </div>
-            </div>
-        </main>
-
-        <footer class="row mt-auto pt-3 border-top">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <button onclick="goToSlide(4)" class="btn btn-outline-secondary btn-sm">⬅ Releer Fuentes de Fe</button>
-                <button onclick="goToSlide(3)" class="btn btn-outline-primary btn-sm">🏠 Menú Principal</button>
-                <div id="next-action-container">
-                    <span class="badge bg-warning text-dark p-2" id="lock-msg" aria-live="polite">🔒 Valide los 3 criterios para avanzar</span>
-                </div>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 5 -->
-
-<!-- Pantalla 6: Fuentes y Prácticas del Islam -->
-<section id="slide-6" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="4.1 Fuentes sobre la Devoción Islámica" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <!-- Encabezado con Alineación a la Destreza Investigativa -->
-        <header class="row mb-3 align-items-center">
-            <div class="col-md-8">
-                <span class="editor-badge mb-2">Criterio: Prestigio Editorial y Académico</span>
-                <h1 class="h3 text-success text-uppercase fw-bold border-bottom pb-2">4.1. Fuentes de Consulta: El Islam</h1>
-                <p class="small text-dark mb-0">
-                    Investigar la sumisión divina requiere acudir a <strong>Guías de Investigación</strong> universitarias y sociedades académicas (como la <em>American Academy of Religion</em>) para evitar sesgos subjetivos.
-                </p>
-            </div>
-            <div class="col-md-4">
-                <div class="audio-player-box shadow-sm p-2 border rounded bg-light">
-                    <p class="x-small fw-bold mb-1">🔊 Narración: El rigor en las fuentes islámicas</p>
-                    <audio controls class="w-100" aria-label="Audio sobre pilares del Islam y fuentes confiables">
-                        <source src="audios/Subtema_2.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 align-items-center overflow-auto">
-            <!-- Columna de Criterios Técnicos -->
-            <div class="col-md-5">
-                <div class="research-note shadow-sm mb-3">
-                    <h2 class="h6 fw-bold text-success">¿Cómo validar esta información?</h2>
-                    <p class="x-small text-justify mb-2">
-los criterios de la <strong>USC</strong>, al consultar los pilares del Islam debemos verificar:
-                    </p>
-                    <ul class="x-small ps-3 mb-0">
-                        <li><strong>Prestigio del Editor:</strong> ¿La editorial es reconocida en estudios del Medio Oriente? [2].</li>
-                        <li><strong>Arbitraje:</strong> ¿El texto ha sido revisado por expertos (<em>peer review</em>)?.</li>
-                        <li><strong>Objetividad:</strong> ¿La fuente distingue entre práctica religiosa y análisis científico?.</li>
-                    </ul>
-                </div>
-                <figure class="text-center">
-                    <img src="img/pilares de fé.png" alt="Infografía de los 5 pilares del Islam: Shahadah, Salat, Zakat, Sawm y Hajj." class="img-fluid rounded shadow border-bottom border-success border-5" style="max-height: 180px;">
-                    <figcaption class="x-small text-muted mt-2">Los pilares como objeto de estudio en revistas indexadas.</figcaption>
-                </figure>
-            </div>
-
-            <!-- Columna de Contenido Temático (Los Pilares) -->
-            <div class="col-md-7 ps-md-4">
-                <h2 class="h5 fw-bold mb-3 text-center border-bottom pb-2">Datos Validados: Pilares de la Práctica</h2>
-                
-                <div class="islam-step-content">
-                    <p class="small mb-1"><strong>1. Oración (Salat):</strong> Conexión rítmica diaria extraída de manuales de liturgia académica.</p>
-                </div>
-
-                <div class="islam-step-content">
-                    <p class="small mb-1"><strong>2. Ayuno (Ramadán):</strong> Periodo de purificación analizado en estudios sociológicos por su impacto comunitario.</p>
-                </div>
-
-                <div class="islam-step-content">
-                    <p class="small mb-1"><strong>3. Peregrinación (Hajj):</strong> Símbolo de igualdad universal documentado en archivos históricos y mapas geográficos.</p>
-                </div>
-
-                <div class="p-2 bg-success-subtle rounded small italic mt-2">
-                    <strong>Reflexión Investigativa:</strong> El Islam se presenta como fe universal. ¿Qué documentos científicos ayudan a contrastar este mensaje con otras naciones?.
-                </div>
-            </div>
-        </main>
-
-        <!-- Navegación Descriptiva (Norma UNE 12) -->
-        <footer class="row mt-auto pt-3 border-top">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <button onclick="goToSlide(3)" class="btn btn-outline-primary btn-sm">🏠 Ir al menú principal</button>
-                <div class="d-flex gap-2">
-                    <button onclick="changeSlide(-1)" class="btn btn-outline-success btn-sm">⬅ Releer Judaísmo</button>
-                    <button onclick="changeSlide(1)" class="btn btn-success btn-sm shadow-sm" aria-label="Ir al reto del observador de la fe">
-                        Ir al Reto: El Observador de la Fe ➡
-                    </button>
-                </div>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 6 -->
-
-<!-- Pantalla 7: Reto de Análisis e Investigación -->
-<section id="slide-7" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="Actividad: El Observador de la Fe y las Fuentes" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <header class="row mb-3 text-center">
-            <div class="col-12">
-                <span class="badge bg-success mb-2">Validación de Datos sobre el Islam</span>
-                <h1 class="h3 text-success fw-bold text-uppercase border-bottom pb-2">Reto: El Observador de la Fe</h1>
-                <p class="small">Analice cómo los datos de la fe musulmana se validan en fuentes científicas.</p>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 align-items-center justify-content-center overflow-auto">
-            <div class="col-md-10">
-                <!-- Indicador de progreso-->
-                <div class="progress progress-reto mb-4">
-                    <div id="progreso-interno" class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                <div class="card card-analysis shadow-sm p-4 text-center">
-                    <h2 class="h6 text-muted mb-3" id="titulo-caso">Caso 1 de 3</h2>
-                    <p class="fs-5 mb-4" id="descripcion-caso">
-                        "En un <strong>archivo de textos sagrados</strong> (sacred-texts.com), un investigador lee sobre la conexión rítmica con lo divino realizada cinco veces al día."
-                    </p>
-                    
-                    <!-- Contenedor de Opciones -->
-                    <div id="contenedor-opciones" class="d-flex justify-content-center gap-3 flex-wrap">
-                        <button onclick="evaluarRespuesta('Salat')" class="btn btn-outline-success btn-option px-4">La Oración (Salat)</button>
-                        <button onclick="evaluarRespuesta('Ramadan')" class="btn btn-outline-success btn-option px-4">El Ayuno (Ramadán)</button>
-                        <button onclick="evaluarRespuesta('Hajj')" class="btn btn-outline-success btn-option px-4">La Peregrinación (Hajj)</button>
-                    </div>
-
-                    <!-- Control Siguiente -->
-                    <div id="control-siguiente" class="d-none mt-4">
-                        <button onclick="siguienteCaso()" class="btn btn-success px-5 shadow">Ir al siguiente hallazgo técnico ➡</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <footer class="row mt-auto pt-3 border-top">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <button onclick="goToSlide(3)" class="btn btn-outline-primary btn-sm">🏠 Ir al menú Principal</button>
-                <div id="navegacion-final" class="d-none gap-3">
-                    <button onclick="changeSlide(-1)" class="btn btn-outline-success btn-sm">⬅ Releer Islam</button>
-                    <button onclick="changeSlide(1)" class="btn btn-success btn-sm">Continuar al Cristianismo: Fuentes de Gracia ➡</button>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Modal de Error (Retroalimentación DUA) -->
-    <div class="modal fade" id="modalError" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-danger border-3">
-                <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title fw-bold">Pista de Investigación</h5>
-                </div>
-                <div class="modal-body text-center p-4">
-                    <p id="texto-error" class="fs-5 mb-0"></p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-dark px-5" data-bs-dismiss="modal">Intentar de nuevo</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script>
-    let etapaActual = 1;
-    const totalEtapas = 3;
-const misEscenarios = {
-    1: {
-        texto: "En una <strong>Guía de Investigación Universitaria</strong>, se describe la práctica de detener actividades para orientar el corazón hacia lo divino cinco veces al día.",
-        correcta: "Salat",
-        pista: "Esta información sobre la oración diaria se valida en manuales de liturgia académica."
-    },
-    2: {
-        texto: "Un artículo en una <strong>Revista Arbitrada</strong> analiza el impacto social de la purificación espiritual y el sacrificio personal realizado anualmente.",
-        correcta: "Ramadan",
-        pista: "El arbitraje por expertos confirma que este periodo de ayuno fortalece la voluntad comunitaria."
-    },
-    3: {
-        texto: "Documentos de una <strong>Sociedad Académica de Religión</strong> describen un viaje que simboliza la igualdad universal donde todos visten túnicas blancas.",
-        correcta: "Hajj",
-        pista: "El prestigio del editor asegura que este viaje sagrado es un símbolo de unidad documentado históricamente."
-    }
-};
-
-    function evaluarRespuesta(eleccion) {
-        const escenario = misEscenarios[etapaActual];
-        
-        if (eleccion === escenario.correcta) {
-            // Caso Correcto: Bloquear opciones y mostrar botón Siguiente
-            document.getElementById('contenedor-opciones').classList.add('opacity-50', 'pe-none');
-            document.getElementById('control-siguiente').classList.remove('d-none');
-            
-            // Actualizar barra de progreso
-            const porcentaje = (etapaActual / totalEtapas) * 100;
-            document.getElementById('progreso-interno').style.width = porcentaje + "%";
-        } else {
-            // Caso Incorrecto: Mostrar Modal de error
-            document.getElementById('texto-error').innerText = escenario.pista;
-            const myModal = new bootstrap.Modal(document.getElementById('modalError'));
-            myModal.show();
-        }
-    }
-
-function siguienteCaso() {
-    if (etapaActual < totalEtapas) {
-        etapaActual++;
-        // Resetear interfaz para el nuevo caso
-        document.getElementById('titulo-caso').innerText = "Caso " + etapaActual + " de 3";
-        
-        // CORRECCIÓN AQUÍ: Cambiado de .innerText a .innerHTML
-        document.getElementById('descripcion-caso').innerHTML = misEscenarios[etapaActual].texto;
-        
-        document.getElementById('contenedor-opciones').classList.remove('opacity-50', 'pe-none');
-        document.getElementById('control-siguiente').classList.add('d-none');
-    } else {
-        // Finalizar actividad
-        document.getElementById('titulo-caso').innerText = "¡Reto Completado!";
-        document.getElementById('descripcion-caso').innerText = "Has analizado correctamente los pilares de la fe islámica.";
-        document.getElementById('contenedor-opciones').classList.add('d-none');
-        document.getElementById('control-siguiente').classList.add('d-none');
-        document.getElementById('navegacion-final').classList.remove('d-none');
-    }
-}
-</script>
-        <!-- Fin Pantalla 7 -->
-
-<!-- Pantalla 8: Fuentes de Consulta y la Fe Cristiana -->
-<section id="slide-8" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="4.1 Fuentes sobre el Cristianismo y la Gracia" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <!-- Encabezado con enfoque en Localización de Fuentes -->
-        <header class="row mb-3 align-items-center">
-            <div class="col-md-8">
-                <span class="badge bg-primary mb-2">Criterio: Actualidad y Localización de Fuentes</span>
-                <h1 class="h3 text-primary text-uppercase fw-bold border-bottom pb-2">4.1. Fuentes de Consulta: El Cristianismo</h1>
-                <p class="small text-dark mb-0">
-                    Investigar la <strong>Trinidad</strong> y la <strong>Gracia</strong> requiere distinguir entre documentos magisteriales y estudios de sociedades científicas.
-                </p>
-            </div>
-            <div class="col-md-4">
-                <div class="audio-player-box shadow-sm p-2 border rounded bg-white">
-                    <p class="x-small fw-bold mb-1">🔊 Narración: ¿Dónde investigar el cristianismo?</p>
-                    <audio controls class="w-100" aria-label="Audio sobre fuentes cristianas y vida en gracia">
-                        <source src="audios/Subtema_3.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 align-items-center overflow-auto">
-            <!-- Columna Izquierda: ¿Qué fuentes consultar? -->
-            <div class="col-md-6 border-end pe-md-4">
-                <h2 class="h6 fw-bold text-secondary text-uppercase mb-3">Directorio de Fuentes Especializadas:</h2>
-                <div class="source-directory shadow-sm mb-3">
-                    <div class="source-item">
-                        <span class="badge bg-dark">Oficial</span>
-                        <p class="mb-0"><strong>La Santa Sede (Vatican.va):</strong> Repositorio primario para documentos papales y dogmas oficiales.</p>
-                    </div>
-                    <div class="source-item">
-                        <span class="badge bg-info text-dark">Académica</span>
-                        <p class="mb-0"><strong>Society of Biblical Literature:</strong> Sociedad que ofrece investigaciones arbitradas sobre el Nuevo Testamento.</p>
-                    </div>
-                    <div class="source-item">
-                        <span class="badge bg-info text-dark">Académica</span>
-                        <p class="mb-0"><strong>American Society of Church History:</strong> Fuentes sobre la evolución histórica de la Gracia y los sacramentos.</p>
-                    </div>
-                </div>
-                <div class="research-alert rounded">
-                    <strong>Tip Ético:</strong> Prefiere artículos de revistas científicas; estos garantizan un flujo de conocimiento más <strong>actual</strong> que los libros extensos.
-                </div>
-            </div>
-
-            <!-- Columna Derecha: El Concepto de Gracia y Sacramentos -->
-            <div class="col-md-6 ps-md-4">
-                <h2 class="h5 fw-bold mb-3 text-center">Datos Extraídos: Vida en la Gracia</h2>
-                <p class="small text-justify">
-                    A diferencia del cumplimiento legalista, el cristianismo propone que la salvación es un <strong>regalo divino</strong> recibido por la fe. Este dato se valida en fuentes bibliográficas que analizan:
-                </p>
-                <ul class="small">
-                    <li><strong>Los Sacramentos:</strong> Bautismo y Eucaristía como marcas de identidad que unen al fiel con Cristo.</li>
-                    <li><strong>La Trinidad:</strong> Definida en revistas indexadas como una "comunión integradora de la pluralidad".</li>
-                </ul>
-                <div class="text-center mt-3">
-                    <figure>
-                        <img src="img/sacramentos_cristianos.png" alt="Iconografía de los 7 sacramentos cristianos." class="img-fluid rounded shadow-sm border-bottom border-primary border-5" style="max-height: 120px;">
-                        <figcaption class="x-small text-muted italic">Simbolismo validado por estudios de historia cultural.</figcaption>
-                    </figure>
-                </div>
-            </div>
-        </main>
-
-        <!-- Navegación Descriptiva (Norma UNE 12) -->
-        <footer class="row mt-auto pt-3 border-top">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <button onclick="goToSlide(3)" class="btn btn-outline-primary btn-sm">🏠 Ir al menú Principal</button>
-                <div class="d-flex gap-2">
-                    <button onclick="changeSlide(-1)" class="btn btn-outline-secondary btn-sm">⬅ Releer Islam</button>
-                    <button onclick="changeSlide(1)" class="btn btn-primary btn-sm shadow-sm" aria-label="Ir al reto del camino de la gracia">
-                        Ir al Reto: El Camino de la Gracia ➡
-                    </button>
-                </div>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 8 -->
-    
-<!-- Pantalla 9: Reto de Análisis e Investigación Cristiana -->
-<section id="slide-9" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="Actividad: El Camino de la Gracia y sus Fuentes" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <header class="row mb-3 text-center">
-            <div class="col-12">
-                <span class="badge bg-primary mb-2">Validación de Datos: Cristianismo</span>
-                <h1 class="h3 text-primary fw-bold text-uppercase border-bottom pb-2">Reto: El Camino de la Gracia</h1>
-                <p class="small">Identifique cómo se documentan los dogmas cristianos en fuentes académicas y oficiales.</p>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 align-items-center justify-content-center overflow-auto">
-            <div class="col-md-10">
-                <!-- Indicador de progreso DUA -->
-                <div class="progress mb-4" style="height: 12px;">
-                    <div id="progreso-cristianismo" class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;"></div>
-                </div>
-
-                <div class="card shadow-sm p-4 text-center border-primary" style="background-color: #f8fbff;">
-                    <h2 class="h6 text-muted mb-3" id="titulo-caso-cristianismo">Hallazgo Técnico 1 de 3</h2>
-                    <p class="fs-5 mb-4" id="descripcion-caso-cristianismo">
-                        "En el repositorio oficial de <strong>La Santa Sede (vatican.va)</strong>, un estudiante investiga la unión rítmica del fiel con Cristo a través de la eucaristía."
-                    </p>
-                    
-                    <!-- Contenedor de Opciones -->
-                    <div id="contenedor-opciones-cristianismo" class="d-flex justify-content-center gap-3 flex-wrap">
-                        <button onclick="evaluarCristianismo('Ley')" class="btn btn-outline-primary px-4">Cumplimiento de la Ley</button>
-                        <button onclick="evaluarCristianismo('Gracia')" class="btn btn-outline-primary px-4">Vida en Gracia y Sacramentos</button>
-                        <button onclick="evaluarCristianismo('Sumisión')" class="btn btn-outline-primary px-4">Sumisión Estructurada</button>
-                    </div>
-
-                    <!-- Control Siguiente -->
-                    <div id="control-siguiente-cristianismo" class="d-none mt-4">
-                        <button onclick="siguienteCasoCristianismo()" class="btn btn-primary px-5 shadow">Validar siguiente hallazgo ➡</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <footer class="mt-4 text-center border-top pt-3">
-            <div id="navegacion-final-cristianismo" class="d-none justify-content-center gap-3">
-                <button onclick="goToSlide(3)" class="btn btn-outline-dark btn-sm">🏠 Menú Principal</button>
-                <button onclick="changeSlide(-1)" class="btn btn-outline-primary btn-sm">⬅ Releer Fuentes Cristianas</button>
-                <button onclick="changeSlide(1)" class="btn btn-success btn-sm">Continuar a Ética y Sociedad: Investigación Objetiva ➡</button>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Modal de Error (Retroalimentación Ética) -->
-    <div class="modal fade" id="modalErrorCristianismo" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-danger border-3">
-                <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title fw-bold">⚠️ Error de Validación</h5>
-                </div>
-                <div class="modal-body text-center p-4">
-                    <p id="texto-error-cristianismo" class="fs-5 mb-0"></p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-dark px-5" data-bs-dismiss="modal">Revisar Fuente</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script>
-let etapaCristianismo = 1;
-const totalEtapasCristianismo = 3;
-
-const escenariosCristianismo = {
-    1: {
-        texto: "En el repositorio oficial de <strong>La Santa Sede (vatican.va)</strong>, un estudiante investiga la unión rítmica del fiel con Cristo a través de la eucaristía.",
-        correcta: "Gracia",
-        pista: "Esta fuente oficial confirma que el centro es la vida en gracia, no un código legal externo."
-    },
-    2: {
-        texto: "Un artículo en la revista de la <strong>Society of Biblical Literature</strong> analiza el bautismo como una marca de identidad extraída de manuscritos antiguos.",
-        correcta: "Bautismo",
-        pista: "El arbitraje por expertos de esta sociedad asegura que el bautismo es un sacramento fundamental documentado históricamente."
-    },
-    3: {
-        texto: "Un investigador evalúa la <strong>actualidad</strong> de una referencia científica que define la salvación como un 'regalo divino' recibido por la fe.",
-        correcta: "Fe",
-        pista: "La actualidad de la fuente garantiza que la visión de la fe como don es el consenso académico vigente."
-    }
-};
-function evaluarCristianismo(eleccion) {
-const escenario = escenariosCristianismo[etapaCristianismo];
-if (eleccion === escenario.correcta) {
-document.getElementById("contenedor-opciones-cristianismo").classList.add("opacity-50", "pe-none");
-document.getElementById("control-siguiente-cristianismo").classList.remove("d-none");
-const porcentaje = (etapaCristianismo / totalEtapasCristianismo) * 100;
-document.getElementById("progreso-cristianismo").style.width = porcentaje + "%";
-} else {
-document.getElementById("texto-error-cristianismo").innerText = escenario.pista;
-const modal = new bootstrap.Modal(document.getElementById("modalErrorCristianismo"));
-modal.show();
-}
-}
-
-function siguienteCasoCristianismo() {
-    if (etapaCristianismo < totalEtapasCristianismo) {
-        etapaCristianismo++;
-        const escenario = escenariosCristianismo[etapaCristianismo];
-        document.getElementById("titulo-caso-cristianismo").innerText = "Caso " + etapaCristianismo + " de 3";
-        
-        // avanzar<strong>
-        document.getElementById("descripcion-caso-cristianismo").innerHTML = escenario.texto;
-        
-        document.getElementById("contenedor-opciones-cristianismo").classList.remove("opacity-50", "pe-none");
-        document.getElementById("control-siguiente-cristianismo").classList.add("d-none");
-
-        // Actualizar opciones según el caso
-        let opcionesHTML = "";
-        if (etapaCristianismo === 2) {
-            opcionesHTML = `
-            <button onclick="evaluarCristianismo('Bautismo')" class="btn btn-outline-primary px-4 py-2">Bautismo y eucaristía</button>
-            <button onclick="evaluarCristianismo('Oración')" class="btn btn-outline-primary px-4 py-2">Oración y ayuno</button>
-            <button onclick="evaluarCristianismo('Peregrinación')" class="btn btn-outline-primary px-4 py-2">Peregrinación y limosna</button>
-            `;
-        } else if (etapaCristianismo === 3) {
-            opcionesHTML = `
-            <button onclick="evaluarCristianismo('Fe')" class="btn btn-outline-primary px-4 py-2">Salvación como regalo divino por la fe</button>
-            <button onclick="evaluarCristianismo('Ley')" class="btn btn-outline-primary px-4 py-2">Salvación por cumplimiento estricto de la Ley</button>
-            <button onclick="evaluarCristianismo('Sumisión')" class="btn btn-outline-primary px-4 py-2">Salvación por sumisión estructurada</button>
-            `;
-        }
-        document.getElementById("contenedor-opciones-cristianismo").innerHTML = opcionesHTML;
-    } else {
-        document.getElementById("navegacion-final-cristianismo").classList.remove("d-none");
-    }
-}</script>
-<!-- Fin Pantalla 9 -->
-
-<!-- Pantalla 10: Ética y Sociedad - Investigación Objetiva -->
-<section id="slide-10" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="4.2 Investigación Objetiva de la Ética" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        
-        <!-- Encabezado con Enfoque en la Destreza Investigativa -->
-        <header class="row mb-3">
-            <div class="col-12">
-                <span class="objectivity-badge mb-2">Eje Técnico: Objetividad y Autoría</span>
-                <h1 class="h3 text-success fw-bold border-bottom pb-2">4.2. Investigación de Ética y Normas Sociales</h1>
-                <p class="small text-muted">¿Cómo identificar valores compartidos en fuentes científicas confiables?</p>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 align-items-center overflow-auto">
-            <!-- Columna de Texto: El Criterio de Objetividad -->
-            <div class="col-md-7">
-                <div class="research-card mb-4 shadow-sm">
-                    <h2 class="h6 fw-bold text-success">Criterio de Evaluación de la Fuente:</h2>
-                    <p class="small text-justify mb-0">
-                        Para investigar la ética monoteísta objetivamente, se debe verificar que el autor posea <strong>formación científica</strong> y <strong>prestigio</strong> en la materia. Fuentes como el <em>Journal of the Sociology and Theory of Religion</em> aseguran que la información no presente sesgos ideológicos mediante el <strong>arbitraje par ciego</strong>.
-                    </p>
-                </div>
-
-                <p class="mb-3 small">
-                    Los datos obtenidos de investigaciones arbitradas confirman que el judaísmo, cristianismo e islamismo comparten una raíz ética donde las reglas morales provienen de un mandato divino.
-                </p>
-
-                <!-- Audio multimodal -->
-                <div class="audio-container p-3 border rounded bg-light shadow-sm">
-                    <h2 class="h6 fw-bold mb-2">🎧 Escuchar: ¿Cómo validar la ética social?</h2>
-                    <audio controls class="w-100" aria-label="Narración sobre investigación objetiva de valores éticos">
-                        <source src="audios/Subtema_4.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-            </div>
-
-            <!-- Columna Visual: Valores Validados Científicamente -->
-            <div class="col-md-5 text-center">
-                <figure class="mb-3">
-                    <img src="img/ética_sociedad.png" alt="Ilustración tipo cartel titulada “Ética y Sociedad 
-en Religiones Monoteístas”, con templos judío, cristiano e islámico de fondo, una paloma con 
-rama de olivo sobre una balanza dorada frente a un globo terráqueo y, en primer plano, un 
-líder musulmán, uno judío y una monja cristiana conversando mientras dos manos se 
-estrechan; en la parte baja se ven escenas de ayuda social (voluntario sirviendo comida, 
-médico atendiendo a una madre con su hijo, grupo de personas tomadas de la mano) y 
-símbolos de valores: manos sosteniendo un corazón rojo, un saco de dinero tachado sobre un 
-libro abierto y otro saco con signo de dólar." class="img-fluid rounded shadow" style="max-height: 200px;">
-                    <figcaption class="x-small text-muted mt-2">Valores documentados en artículos con alto <strong>Factor de Impacto</strong>.</figcaption>
-                </figure>
-
-                <h2 class="h6 fw-bold mb-2 text-start">Valores Identificados en la Fuente:</h2>
-                <div class="ethics-card text-start shadow-sm">
-                    <strong>Justicia:</strong> Equidad social extraída de estudios de responsabilidad intrínseca.
-                </div>
-                <div class="ethics-card text-start shadow-sm">
-                    <strong>Honradez:</strong> Transparencia validada en modelos de conducta compartidos.
-                </div>
-                <div class="ethics-card text-start shadow-sm">
-                    <strong>Vida:</strong> Defensa de la dignidad humana analizada en revistas de <strong>Bioética</strong>.
-                </div>
-            </div>
-        </main>
-
-        <!-- Pie de página con Navegación Descriptiva (Norma UNE) -->
-        <footer class="row mt-auto pt-3 border-top">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <button onclick="goToSlide(3)" class="btn btn-outline-primary btn-sm">🏠 Ir al menú principal</button>
-                <div class="d-flex gap-2">
-                    <button onclick="goToSlide(9)" class="btn btn-secondary btn-sm shadow">⬅ Releer Fuentes Cristianas</button>
-                    <button onclick="changeSlide(1)" class="btn btn-success btn-sm shadow" aria-label="Ir al reto del crucigrama de valores validados">
-                        Ir al Reto: Crucigrama de Valores ➡
-                    </button>
-                </div>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 10 -->
-
-<!-- Pantalla 11: Reto de Crucigrama Investigativo -->
-<section id="slide-11" class="slide-frame shadow-lg p-4 d-none" role="region" aria-label="Actividad: Crucigrama de Valores y Fuentes" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <!-- Encabezado con Enfoque en la Destreza -->
-        <header class="row mb-3">
-            <div class="col-12 text-center">
-                <span class="badge bg-success mb-2">Evaluación de la Objetividad</span>
-                <h1 class="h3 text-success fw-bold border-bottom pb-2">Reto 4.2: El Crucigrama de la Verdad</h1>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 align-items-center">
-            <!-- Instrucción y Pistas (Accesibilidad Textual) -->
-            <div class="col-md-5">
-                <div class="alert alert-warning small py-2 mb-3">
-                    <strong>Instrucción:</strong> Se han estudiado diversas fuentes como guías universitarias y revistas arbitradas. Encuentre en el crucigrama 2 valores compartidos y 1 tipo de fuente académica citada anteriormente. Puede usar las flechas direccionales para encontrar las letras y presionar enter en cada letra para escribir su palabra. Al final, puede cliquear en validar para avanzar al ssiguiente tema.
-                </div>
-                
-                <div class="clue-list bg-light p-3 border-start border-4 border-success shadow-sm">
-                    <h2 class="h6 fw-bold mb-2">🔍 Pistas de Investigación:</h2>
-                    <ul class="list-unstyled small mb-0">
-                        <li class="mb-2"><strong>1. Horizontal:</strong> Valor de equidad social extraído de fuentes objetivas.</li>
-                        <li class="mb-2"><strong>2. Horizontal:</strong> Modelo de conducta basado en la transparencia.</li>
-                        <li class="mb-0"><strong>3. Horizontal:</strong> Tipo de publicación científica (en inglés) que garantiza el arbitraje.</li>
-                    </ul>
-                </div>
-                <!-- Feedback Dinámico ARIA -->
-                <div id="crossword-feedback" class="mt-3 fw-bold small" aria-live="polite"></div>
-            </div>
-
-            <!-- Grilla del Crucigrama (Jerarquía Visual DUA) -->
-            <div class="col-md-7">
-                <div class="crossword-container d-grid" style="grid-template-columns: repeat(9, 1fr); gap: 4px; max-width: 400px; margin: auto;">
-                    
-                    <!-- Fila 1: JUSTICIA (8 letras + 1 nula) -->
-                    <!-- [Celdas con aria-label para lector de pantalla] -->
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JUSTICIA" aria-label="Palabra 1, letra 1" placeholder="1">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JUSTICIA" aria-label="Palabra 1, letra 2">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JUSTICIA" aria-label="Palabra 1, letra 3">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JUSTICIA" aria-label="Palabra 1, letra 4">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JUSTICIA" aria-label="Palabra 1, letra 5">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JUSTICIA" aria-label="Palabra 1, letra 6">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JUSTICIA" aria-label="Palabra 1, letra 7">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JUSTICIA" aria-label="Palabra 1, letra 8">
-                    <div class="cell-null bg-dark"></div>
-
-                    <!-- Fila 2: HONRADEZ (8 letras + 1 nula) -->
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="HONRADEZ" aria-label="Palabra 2, letra 1" placeholder="2">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="HONRADEZ" aria-label="Palabra 2, letra 2">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="HONRADEZ" aria-label="Palabra 2, letra 3">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="HONRADEZ" aria-label="Palabra 2, letra 4">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="HONRADEZ" aria-label="Palabra 2, letra 5">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="HONRADEZ" aria-label="Palabra 2, letra 6">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="HONRADEZ" aria-label="Palabra 2, letra 7">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="HONRADEZ" aria-label="Palabra 2, letra 8">
-                    <div class="cell-null bg-dark"></div>
-
-                    <!-- Fila 3: JOURNAL (7 letras + 2 nulas) -->
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JOURNAL" aria-label="Palabra 3, letra 1" placeholder="3">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JOURNAL" aria-label="Palabra 3, letra 2">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JOURNAL" aria-label="Palabra 3, letra 3">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JOURNAL" aria-label="Palabra 3, letra 4">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JOURNAL" aria-label="Palabra 3, letra 5">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JOURNAL" aria-label="Palabra 3, letra 6">
-                    <input type="text" maxlength="1" class="crossword-cell text-center fw-bold" data-word="JOURNAL" aria-label="Palabra 3, letra 7">
-                    <div class="cell-null bg-dark"></div>
-                    <div class="cell-null bg-dark"></div>
-                </div>
-            </div>
-        </main>
-
-        <footer class="row mt-auto pt-3 border-top">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <button onclick="goToSlide(10)" class="btn btn-secondary btn-sm">⬅ Releer Objetividad</button>
-                <div id="btn-next-container" class="d-flex gap-2">
-                    <button onclick="checkCrossword()" class="btn btn-success px-4">Validar Valores Éticos/fuente de consulta</button>
-                    <!-- El botón de avanzar se genera dinámicamente al ganar -->
-                </div>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 11 -->
-
-<!-- Pantalla 12: Similitudes y Diferencias - Contraste Científico -->
-<section id="slide-12" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="4.3 Análisis Comparativo y Documentos Científicos" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        
-        <!-- ENCABEZADO -->
-        <header class="row mb-3">
-            <div class="col-12">
-                <span class="impact-badge mb-2">Eje Técnico: Indicadores de Impacto (JCR/SJR)</span>
-                <h1 class="h3 text-dark fw-bold text-uppercase border-bottom pb-2">4.3. Documentos Científicos de Contraste</h1>
-                <p class="small text-muted">Uso de artículos indexados para argumentar similitudes y diferencias doctrinales.</p>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 overflow-auto">
-            <!-- COLUMNA IZQUIERDA: Narrativa e Indicadores -->
-            <div class="col-md-5">
-                <div class="narrative-section mb-3">
-                    <p class="small text-justify">
-                        Para contrastar dogmas como la <strong>Trinidad</strong> o el <strong>Tawhid</strong>, un investigador ético utiliza artículos de <strong>revistas indexadas</strong>. Estos documentos son más confiables porque han superado una <strong>revisión por pares</strong> que garantiza la ausencia de sesgos.
-                    </p>
-                </div>
-                
-                <!-- SECCIÓN PARA EL AUDIO -->
-                <div class="audio-box p-3 bg-light border rounded shadow-sm mb-3">
-                    <label for="audio-4-3" class="fw-bold small mb-1">🔊 Escuchar: El rigor del contraste científico</label>
-                    <audio id="audio-4-3" controls class="w-100" aria-label="Audio sobre contraste de dogmas en fuentes indexadas">
-                        <source src="audios/Subtema_5.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
- <!-- SECCIÓN PARA LA IMAGEN PRINCIPAL -->
- <div class="main-image-container text-center">
- <img src="img/Similitudes_diferencias.png" alt="Ilustración titulada “Similitudes y 
-Diferencias de Religiones Monoteístas” que compara cristianismo, judaísmo e islam mediante 
-escenas simbólicas: figuras representando a cada religión con sus libros sagrados, el pecado 
-original con Adán y Eva, el libre albedrío como un camino que se bifurca entre “bien” y “mal”, 
-un apretón de manos sobre el planeta y gestos de ayuda y cuidado entre personas; al final 
-aparecen los tres libros sagrados juntos, símbolos de un solo Dios y una paloma con la frase 
-“Diálogo y Paz”, resaltando la paz, la justicia y el respeto entre las tres religiones." class="imgfluid rounded shadow-sm" style="max-height: 150px;">
-                <div class="scientific-note shadow-sm">
-                    <strong>Criterio Aplicado:</strong> Los datos de esta tabla provienen de revistas en el <strong>primer cuartil (Q1)</strong> de <em>Scimago Journal Rank</em>, asegurando el más alto factor de impacto académico.
-                </div>
-            </div>
-
-            <!-- COLUMNA DERECHA: Cuadro Comparativo Validado -->
-            <div class="col-md-7">
-                <div class="table-responsive">
-                    <table class="table table-sm table-bordered border-dark align-middle shadow-sm table-scientific" style="font-size: 0.85rem;">
-                        <caption class="visually-hidden">Cuadro comparativo validado por revisión por pares</caption>
-                        <thead class="table-dark text-center">
-                            <tr>
-                                <th scope="col">Hallazgo Técnico</th>
-                                <th scope="col">Cristianismo</th>
-                                <th scope="col">Judaísmo / Islam</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="bg-light">Naturaleza de Dios</th>
-                                <td>Trinidad: Unidad que integra pluralidad.</td>
-                                <td>Tawhid: Unidad absoluta e indivisible.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="bg-light">Estado del Hombre</th>
-                                <td>Pecado Original: Requiere redención divina.</td>
-                                <td>Pureza Natal: Libre albedrío total y responsabilidad.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="bg-light">Autoridad Textual</th>
-                                <td>Biblia: Inspiración con diversas interpretaciones.</td>
-                                <td>Corán: Palabra literal, eterna y correctora.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <!-- ORGANIZADOR GRÁFICO: Mínimos Éticos -->
-                <div class="graphic-organizer-section mt-2 p-2 border border-info rounded bg-info-subtle text-center">
-                    <h2 class="h6 fw-bold">Conclusión Investigativa: Diálogo y Paz</h2>
-                    <img src="img/Organizador_gráfico.png" alt="Mapa conceptual que conecta los 
-dogmas religiosos con los mínimos éticos ciudadanos para la paz social." class="img-fluid rounded" style="max-height: 80px;">
-                </div>
-            </div>
-        </main>
-
-        <!-- PIE DE PÁGINA Y NAVEGACIÓN -->
-        <footer class="row mt-auto pt-2 border-top">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <button onclick="goToSlide(3)" class="btn btn-outline-primary btn-sm">🏠 Ir al menú Principal</button>
-                <div class="text-center">
-                    <p class="small mb-0 fw-bold text-primary">
-                        ¿Puedes vincular estas situaciones con su fuente científica?
-                        <button onclick="changeSlide(1)" class="btn btn-primary btn-sm ms-2" aria-label="Ir a la actividad de emparejamiento de dogmas validados">
-                            Ir al Reto Final: Conexiones ➡
-                        </button>
-                    </p>
-                </div>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 12 -->
-
-<!-- Pantalla 13: Reto Final de Conexiones Científicas -->
-<section id="slide-13" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="Actividad: Emparejamiento de Dogmas y Fuentes" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <header class="row mb-3">
-            <div class="col-12 text-center">
-                <span class="badge bg-primary mb-2">Validación de Hallazgos Doctrinales</span>
-                <h1 class="h3 text-primary fw-bold text-uppercase border-bottom pb-2">Reto 4.3: Conexiones de Verdad</h1>
-                <p class="small text-muted"><strong>Instrucción:</strong> Seleccione un hallazgo científico de la izquierda y vincúlelo con su criterio de validación técnica a la derecha.</p>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 align-items-center overflow-auto">
-            <!-- Casos de Reflexión Científica (Generados por JS) -->
-            <div class="col-md-7 match-container" id="left-column"></div>
-            <!-- Criterios de Validación Técnica (Generados por JS) -->
-            <div class="col-md-5 match-container" id="right-column"></div>
-        </main>
-
-        <footer class="row mt-auto pt-3 border-top">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <button onclick="goToSlide(12)" class="btn btn-outline-secondary btn-sm">⬅ Releer Hallazgos Técnicos</button>
-                <div id="match-feedback" class="small fw-bold text-primary" aria-live="polite"></div>
-                <div id="btn-final-nav" class="d-none">
-                    <button onclick="changeSlide(1)" class="btn btn-success btn-sm animate__animated animate__pulse shadow">
-                        Finalizar Análisis e Ir a Evaluación ➡
-                    </button>
-                </div>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 13 -->
-
-<!-- Pantalla 14: Evaluación Final Sumativa -->
-<section id="slide-14" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="Evaluación Final: Fe e Investigación" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <header class="row mb-3 align-items-center">
-            <div class="col-8">
-                <h1 class="h3 fw-bold text-dark border-bottom pb-2">Evaluación Final: Rigor y Fe</h1>
-            </div>
-            <div class="col-4 text-end">
-                <div id="timer-display" class="timer-box d-none">10:00</div>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 align-items-center overflow-auto">
-            <div class="col-12">
-                <!-- Introducción -->
-                <div id="intro-eval" class="bg-light p-4 rounded-4 shadow-sm text-center">
-                    <h2 class="h4 fw-bold text-primary mb-3">Instrucciones de Certificación</h2>
-                    <p class="mb-3">Esta prueba mide tu capacidad para <strong>argumentar dogmas usando fuentes confiables</strong>.</p>
-                    <ul class="text-start small mb-4 mx-auto" style="max-width: 500px;">
-                        <li><strong>Círculo de Maestría:</strong> Un error te regresará físicamente a la <strong>Pregunta 1</strong>.</li>
-                        <li><strong>Penalización:</strong> Cada fallo resta <strong>1.0 punto</strong> de tu nota final.</li>
-                        <li><strong>Objetivo:</strong> Alcanzar el final del recorrido sin errores.</li>
-                    </ul>
-                    <button onclick="startSummativeEval()" class="btn btn-primary btn-lg px-5 shadow">Iniciar Evaluación</button>
-                </div>
-
-                <!-- Área de Preguntas Interactiva -->
-                <div id="quiz-area" class="d-none">
-                    <div class="card border-primary p-4 shadow-sm bg-white">
-                        <div class="d-flex justify-content-between mb-3 border-bottom pb-2">
-                            <h2 id="q-number" class="h6 text-muted mb-0">Pregunta 1 de 5</h2>
-                            <span id="live-score" class="badge bg-danger">Puntos: 10.0</span>
-                        </div>
-                        <p id="q-text" class="h5 fw-bold mb-4 text-dark"></p>
-                        <div id="options-grid" class="d-grid gap-2">
-                            <!-- Los botones se generan dinámicamente -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Resultados Finales -->
-                <div id="final-results" class="d-none text-center">
-                    <h2 class="h2 text-success fw-bold mb-3">¡Análisis Validado Exitosamente!</h2>
-                    <p class="mb-2">Tu calificación final tras el proceso de rigor científico es:</p>
-                    <div class="score-display mb-4" id="final-score-val">0/10</div>
-                    <div class="d-flex justify-content-center gap-3">
-                        <button onclick="goToSlide(3)" class="btn btn-outline-primary">🏠 Menú Principal</button>
-                        <button onclick="goToSlide(15)" class="btn btn-dark">Ver Bibliografía Ética ➡</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- Modal de Reinicio (Círculo de Maestría) -->
-    <div class="modal fade" id="modalRetry" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-danger border-3">
-                <div class="modal-header bg-danger text-white py-2">
-                    <h5 class="modal-title fw-bold">⚠️ Falta de Rigor Técnico</h5>
-                </div>
-                <div class="modal-body text-center p-4">
-                    <p class="fs-5">Has fallado en la validación. Por ética de investigación, <strong>debes reiniciar el proceso desde la Pregunta 1</strong>.</p>
-                    <p class="text-danger fw-bold fs-4">-1.0 punto de penalización</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-dark px-5" data-bs-dismiss="modal" onclick="resetToFirstQuestion()">Reiniciar Ciclo</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Fin Pantalla 14 -->
-
-<!-- Pantalla 15: Referencias Bibliográficas -->
-<section id="slide-15" class="slide-frame shadow-lg p-4 p-md-5 d-none" role="region" aria-label="Referencias Bibliográficas Finales" tabindex="-1">
-    <div class="container-fluid h-100 d-flex flex-column">
-        <header class="row mb-3">
-            <div class="col-12">
-                <h1 class="h3 fw-bold text-dark border-bottom pb-2">3. Referencias Bibliográficas (APA 7)</h1>
-                <p class="small text-muted">Fuentes consultadas para el estudio de las religiones y la metodología de investigación ética.</p>
-            </div>
-        </header>
-
-        <main class="row flex-grow-1 overflow-auto py-2">
-            <div class="col-12">
-                <!-- SECCIÓN: INVESTIGACIÓN Y CONFIABILIDAD /Web) -->
-                <h2 class="h6 fw-bold text-success text-uppercase mb-3">Fuentes sobre Técnica y Ética de Investigación:</h2>
-                
-                <p class="apa-reference">
-                    Lujardo Escobar, Y. (2018, 17 de septiembre). <em>Evaluación de fuentes de información. Aspectos a tener en cuenta</em> [Presentación]. Biblioteca Médica Nacional. 
-                    <a href="https://files.sld.cu/bmn/files/2018/10/Evaluacion-de-las-fuentes-de-informacion.pdf" target="_blank" rel="noopener">Acceder al documento</a>
-                </p>
-
-                <p class="apa-reference">
-                    University of Southern California Libraries. (2026, 3 de marzo). <em>Religion Research Guide: External Resources for Religion</em>. Research Guides at USC. 
-                    <a href="https://libguides.usc.edu/religion" target="_blank" rel="noopener">https://libguides.usc.edu/religion</a>
-                </p>
-
-                <p class="apa-reference">
-                    Vásquez Farías, E. E., Pérez Reyna, A. C., Baeza Vera, C., Salas del Río, A. M., Galicia Rdz., M. I. C., & Contreras Alvarado, P. M. (2014). <em>Confiabilidad de las fuentes</em>. Proyecto CHIP. Universidad Autónoma de Nuevo León. 
-                    <a href="https://www.uanl.mx/utilerias/chip/descarga/confiabilidad-de-las-fuentes.pdf" target="_blank" rel="noopener">Acceder a Guía UANL</a>
-                </p>
-
-                <!-- SECCIÓN: RELIGIONES MONOTEÍSTAS -->
-                <h2 class="h6 fw-bold text-primary text-uppercase mt-4 mb-3">Fuentes sobre Religiones:</h2>
-                
-                <p class="apa-reference">
-                    Cano Pérez, M. J., & Molina Rueda, B. (2000). Judaísmo, Cristianismo e Islam en Sefarad: ¿Un ejemplo de diálogo intercultural? <em>Miscelánea de Estudios Árabes y Hebraicos. Sección Hebreo</em>, <em>49</em>, 207–232. 
-                    <a href="https://doi.org/10.30827/meahhebreo.v49i0.269" target="_blank">https://doi.org/10.30827/meahhebreo.v49i0.269</a>
-                </p>
-
-                <p class="apa-reference">
-                    Marín Mena, T. J. (2025). Diferencias ético-metafísicas entre judaísmo, islam y cristianismo. <em>Archivo Teológico Granadino</em>, <em>(88)</em>, 205–221. 
-                    <a href="https://doi.org/10.47035/atg.2025.88.5990" target="_blank">https://doi.org/10.47035/atg.2025.88.5990</a>
-                </p>
-
-                <p class="apa-reference">
-                    Marqués Utrillas, J. L. (2022). Análisis comparativo de la ética del trabajo en cuatro tradiciones religiosas. <em>Journal of the Sociology and Theory of Religion</em>, <em>13</em>, 22-47. 
-                    <a href="https://dialnet.unirioja.es/descarga/articulo/8295931.pdf" target="_blank">https://dialnet.unirioja.es/descarga/articulo/8295931.pdf</a>
-                </p>
-
-                <!-- SECCIÓN: NORMATIVA CURRICULAR -->
-                <h2 class="h6 fw-bold text-warning text-uppercase mt-4 mb-3">Normativa Educativa:</h2>
-
-                <p class="apa-reference">
-                    Ministerio de Educación del Ecuador. (2020). <em>Currículo Priorizado: Bachillerato General Unificado</em>. 
-                    <a href="https://educacion.gob.ec/wp-content/uploads/downloads/2025/08/Curriculo-Priorizado-Bachillerato.pdf" target="_blank" rel="noopener">Descargar Documento PDF</a>
-                </p>
-            </div>
-<!-- SECCIÓN: CRÉDITOS DE MATERIAL GENERADO POR IA -->
-<h2 class="h6 fw-bold text-danger text-uppercase mt-4 mb-3">Créditos de Material Multimedia (IA):</h2>
-
-<p class="apa-reference">
-    Google Cloud. (2024). <em>Narraciones educativas para el estudio de las religiones</em> [Generación de voz sintética]. Google Cloud Studio: Native Speech Generation. Material no recuperable generado para este recurso.
-</p>
-
-<p class="apa-reference">
-    Microsoft. (2024). <em>Ilustraciones temáticas: El Tanaj, Pilares del Islam, Sacramentos y Ética compartida</em> [Imágenes generadas por IA]. Copilot (DALL-E 3). Material no recuperable generado para este recurso.
-</p>
-        </main>        
-
-        <!-- PIE DE PÁGINA: Créditos e Información Institucional -->
-        <footer class="row mt-auto pt-3 closing-message">
-            <div class="col-md-9 border-end">
-                <p class="x-small text-muted mb-0">
-                    <strong>Recurso Educativo:</strong> La Hermandad Rota (Investigación y Fe).<br>
-                    <strong>Autor:</strong> Jonael Alejandro Luna Alvarez | <strong>Docente:</strong> Mgtr. Marlon Alexander Maldonado González.<br>
-                    Universidad Nacional de Loja - Carrera de Pedagogía de las Ciencias Experimentales Informática (Ciclo 4º, 2026).
-                </p>
-            </div>
-            <div class="col-md-3 d-flex flex-column justify-content-center gap-1 ps-3">
-                <button onclick="goToSlide(3)" class="btn btn-outline-dark btn-sm w-100">🏠 Ir al menú Principal</button>
-                <button onclick="window.print()" class="btn btn-danger btn-sm w-100 shadow-sm" aria-label="Imprimir todo el recurso para estudio offline">
-                    📥 Descargar Reporte (PDF)
-                </button>
-            </div>
-        </footer>
-    </div>
-</section>
-<!-- Fin Pantalla 15 -->
-
-</main>
-
-    <script>
-        //Espacio para el jaba script que controla la página
-        let currentSlide = 1;
-        const totalSlides = 15;
-
-        function changeSlide(direction) {
-            // 1. Ocultar actual
-            const oldSlide = document.getElementById(`slide-${currentSlide}`);
-            oldSlide.classList.add('d-none');
-            oldSlide.setAttribute('aria-hidden', 'true');
-
-            // 2. Actualizar índice
-            currentSlide += direction;
-            if (currentSlide < 1) currentSlide = 1;
-            if (currentSlide > totalSlides) currentSlide = totalSlides;
-
-            // 3. Mostrar nueva
-            const newSlide = document.getElementById(`slide-${currentSlide}`);
-            newSlide.classList.remove('d-none');
-            newSlide.setAttribute('aria-hidden', 'false');
-            
-            // 4. Mover el foco
-            newSlide.focus();
-
-            // 5. Actualizar indicador
-            document.getElementById('slide-indicator').innerText = `Diapositiva ${currentSlide} de ${totalSlides}`;
-        }
-
-// Sopa de letras
-const SOPA_WORDS = [
-    { word: "TORA", cells: ["0-0", "1-1", "2-2", "3-3"], found: false },
-    { word: "ARBITRAJE", cells: ["9-0", "9-1", "9-2", "9-3", "9-4", "9-5", "9-6", "9-7", "9-8"], found: false },
-    { word: "INDEXADO", cells: ["0-9", "1-9", "2-9", "3-9", "4-9", "5-9", "6-9", "7-9"], found: false }
-];
-
-let selectedCoords = [];
-
-function initSoup() {
-    const grid = document.getElementById('soup-grid');
-    if (!grid) return; // Seguridad si el elemento no existe aún
-    
-    grid.innerHTML = '';
-    const matrix = Array(10).fill().map(() => Array(10).fill(''));
-
-    // Insertar palabras clave en la matriz
-    SOPA_WORDS.forEach(w => w.cells.forEach((c, i) => {
-        const [r, col] = c.split('-').map(Number);
-        matrix[r][col] = w.word[i];
-    }));
-
-    // Generar botones de la grilla
-    for (let r = 0; r < 10; r++) {
-        for (let c = 0; c < 10; c++) {
-            const char = matrix[r][c] || "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
-            const btn = document.createElement('button');
-            btn.className = 'letter-btn';
-            btn.id = `cell-${r}-${c}`;
-            btn.innerText = char;
-            btn.setAttribute('aria-label', `Letra ${char}, Fila ${r + 1}, Columna ${c + 1}`);
-            btn.setAttribute('aria-pressed', 'false');
-            btn.onclick = () => handleSelection(btn, `${r}-${c}`);
-            grid.appendChild(btn);
-        }
-    }
-}
-
-function handleSelection(btn, coord) {
-    if (btn.classList.contains('found')) return;
-
-    const currentlySelected = btn.classList.toggle('selected');
-    btn.setAttribute('aria-pressed', currentlySelected ? 'true' : 'false');
-
-    if (currentlySelected) {
-        selectedCoords.push(coord);
-    } else {
-        selectedCoords = selectedCoords.filter(x => x !== coord);
-    }
-    checkWords();
-}
-
-function checkWords() {
-    SOPA_WORDS.forEach(w => {
-        if (!w.found && w.cells.every(c => selectedCoords.includes(c))) {
-            w.found = true;
-            w.cells.forEach(c => {
-                const cell = document.getElementById(`cell-${c}`);
-                cell.classList.replace('selected', 'found');
-                cell.setAttribute('aria-pressed', 'false');
-                cell.setAttribute('aria-label', cell.getAttribute('aria-label') + " - Palabra completada");
-            });
-
-            // Actualizar progreso visual [8]
-            const list = document.getElementById('found-words-list');
-            if (SOPA_WORDS.filter(word => word.found).length === 1) list.innerHTML = '';
-            list.innerHTML += `<span class="badge bg-success p-2 shadow-sm animate__animated animate__bounceIn">${w.word}</span>`;
-        }
-    });
-
-    // Desbloquear navegación si se completó el reto
-    if (SOPA_WORDS.every(w => w.found)) {
-        document.getElementById('final-feedback').classList.remove('d-none');
-        document.getElementById('game-header').classList.add('d-none');
-        document.getElementById('next-action-container').innerHTML = 
-            `<button onclick="changeSlide(1)" class="btn btn-success btn-lg shadow animate__animated animate__pulse animate__infinite">Avanzar al Islam ➡</button>`;
-    }
-}
-
-function resetSoup() {
-    selectedCoords = [];
-    SOPA_WORDS.forEach(w => w.found = false);
-    document.getElementById('final-feedback').classList.add('d-none');
-    document.getElementById('game-header').classList.remove('d-none');
-    document.getElementById('found-words-list').innerHTML = '<span class="text-muted small italic">Esperando hallazgos...</span>';
-    document.getElementById('next-action-container').innerHTML = 
-        `<span class="badge bg-warning text-dark p-2" id="lock-msg">🔒 Encuentra las 3 palabras para avanzar</span>`;
-    initSoup();
-}
-
-// Inicialización global al cargar el documento
-document.addEventListener('DOMContentLoaded', () => {
-    initSoup(); 
-});
-        
-function checkCrossword() {
-    // Selector específico para las celdas de la Pantalla 11
-    const inputs = document.querySelectorAll('#slide-11 .crossword-cell');
-    const feedback = document.getElementById('crossword-feedback');
-    const nextContainer = document.getElementById('btn-next-container');
-    
-    const solution = "JUSTICIAHONRADEZJOURNAL".split("");
-    let isCorrect = true;
-
-    inputs.forEach((input, index) => {
-        const userLetter = input.value.toUpperCase();
-        if (userLetter === solution[index]) {
-            input.classList.remove('is-invalid');
-            input.classList.add('is-valid', 'bg-success-subtle'); // Feedback visual positivo
-        } else {
-            input.classList.add('is-invalid');
-            input.classList.remove('is-valid', 'bg-success-subtle');
-            isCorrect = false;
-        }
-    });
-
-    if (isCorrect) {
-        feedback.className = "mt-3 text-success animate__animated animate__fadeIn";
-        feedback.innerText = "¡Excelente! Has identificado los valores éticos y la fuente científica (Journal) correctamente.";
-
-        nextContainer.innerHTML = `
-            <button onclick="changeSlide(1)" class="btn btn-primary animate__animated animate__pulse">
-                Continuar a Similitudes y Diferencias ➡
-            </button>`;
-    } else {
-        feedback.className = "mt-3 text-danger animate__animated animate__shakeX";
-        
-        feedback.innerText = "Hay errores técnicos. Revisa Justicia, Honradez y la fuente académica (Journal).";
-    }
-}
-// --- Lógica de Emparejamiento (Pantalla 13) ---
-const pairsData = [
-    { 
-        id: 1, 
-        situacion: "Unidad trinitaria definida como 'comunión integradora de la pluralidad'.", 
-        dogma: "Dato validado en Revistas Indexadas (Q1)." 
-    },
-    { 
-        id: 2, 
-        situacion: "Jesús como Profeta/Mesías humano sin naturaleza divina.", 
-        dogma: "Hallazgo documentado mediante Arbitraje Par Ciego." 
-    },
-    { 
-        id: 3, 
-        situacion: "Postura del hombre nacido puro, con libre albedrío total.", 
-        dogma: "Principio verificado en Fuentes con Factor de Impacto." 
-    },
-    { 
-        id: 4, 
-        situacion: "Pecado Original como mancha que requiere un Redentor.", 
-        dogma: "Criterio extraído de Sociedades Científicas de Religión." 
-    }
-];
-
-let selectedLeft = null;
-let matchesFound = 0;
-
-function initMatchGame() {
-    const leftCol = document.getElementById('left-column');
-    const rightCol = document.getElementById('right-column');
-    if (!leftCol || !rightCol) return;
-
-    // Reiniciar estado
-    leftCol.innerHTML = ''; 
-    rightCol.innerHTML = '';
-    matchesFound = 0;
-    document.getElementById('match-feedback').innerText = '';
-    document.getElementById('btn-final-nav').classList.add('d-none');
-
-    // 1. Generar columna izquierda (Hallazgos)
-    pairsData.forEach(p => {
-        const btn = document.createElement('button');
-        btn.className = 'match-item shadow-sm mb-2 w-100';
-        btn.innerHTML = `<small>${p.situacion}</small>`;
-        btn.onclick = () => selectLeft(p.id, btn);
-        btn.setAttribute('aria-label', `Hallazgo: ${p.situacion}`);
-        leftCol.appendChild(btn);
-    });
-
-    // 2. Generar columna derecha (Validaciones desordenadas)
-    [...pairsData].sort(() => Math.random() - 0.5).forEach(p => {
-        const btn = document.createElement('button');
-        btn.className = 'match-item shadow-sm mb-2 w-100';
-        btn.innerHTML = `<small>${p.dogma}</small>`;
-        btn.onclick = () => checkMatch(p.id, btn);
-        btn.setAttribute('aria-label', `Criterio de validación: ${p.dogma}`);
-        rightCol.appendChild(btn);
-    });
-}
-
-function selectLeft(id, btn) {
-    document.querySelectorAll('#left-column .match-item').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    selectedLeft = { id, btn };
-    document.getElementById('match-feedback').innerText = "Seleccione ahora el criterio de validación correspondiente.";
-}
-
-function checkMatch(id, btn) {
-    const feedback = document.getElementById('match-feedback');
-    if (!selectedLeft) {
-        feedback.innerText = "Error: Seleccione primero un hallazgo de la izquierda.";
-        return;
-    }
-
-    if (id === selectedLeft.id) {
-        // Acierto: Aplicar estilos visuales DUA
-        btn.classList.add('correct', 'animate__animated', 'animate__flash');
-        selectedLeft.btn.classList.add('correct');
-        selectedLeft.btn.disabled = true;
-        btn.disabled = true;
-        selectedLeft = null;
-        matchesFound++;
-        feedback.innerText = "¡Validación correcta!";
-
-        if (matchesFound === pairsData.length) {
-            document.getElementById('btn-final-nav').classList.remove('d-none');
-            feedback.className = "small fw-bold text-success";
-            feedback.innerText = "¡Excelente! Has vinculado todos los dogmas con sus fuentes científicas.";
-        }
-    } else {
-        btn.classList.add('error');
-        setTimeout(() => btn.classList.remove('error'), 500);
-        feedback.innerText = "Esa no es la validación técnica correcta. Revise el criterio de arbitraje.";
-    }
-}
-const originalChangeSlide = changeSlide;
-changeSlide = function(direction) {originalChangeSlide(direction);if (currentSlide === 13) {initMatchGame();}};
-    const questionsDB = [
-    {
-        question: "¿Por qué un artículo indexado en 'Web of Science' es más confiable que un blog para investigar el Judaísmo?",
-        options: [
-            { text: "Porque el blog no tiene imágenes de la Torá.", correct: false },
-            { text: "Porque ha pasado por un arbitraje par ciego que valida la información.", correct: true },
-            { text: "Porque los blogs solo hablan de temas modernos.", correct: false }
-        ]
-    },
-    {
-        question: "Si investigas los Pilares del Islam en una 'Guía de Investigación' universitaria, ¿qué criterio evalúas primero?",
-        options: [
-            { text: "El prestigio del editor y la formación científica del autor.", correct: true },
-            { text: "Que el diseño de la página web sea de color verde.", correct: false },
-            { text: "La cantidad de comentarios positivos en la sección de blog.", correct: false }
-        ]
-    },
-    {
-        question: "Al contrastar el concepto de 'Gracia' cristiana, ¿qué tipo de fuente garantiza mayor actualidad?",
-        options: [
-            { text: "Un libro técnico impreso hace 30 años.", correct: false },
-            { text: "Una revista científica periódica con flujo constante de conocimiento.", correct: true },
-            { text: "Un diccionario general de términos religiosos.", correct: false }
-        ]
-    },
-    {
-        question: "¿Qué indicador métrico usarías para elegir el mejor artículo sobre la Trinidad entre dos revistas indexadas?",
-        options: [
-            { text: "El número de páginas del documento.", correct: false },
-            { text: "El factor de impacto (JCR o SJR) de la publicación.", correct: true },
-            { text: "La biografía del traductor del artículo.", correct: false }
-        ]
-    },
-    {
-        question: "¿Cuál es la forma ética de argumentar la diferencia entre el Tawhid y la Trinidad?",
-        options: [
-            { text: "Usar datos validados por sociedades académicas y revisión por pares.", correct: true },
-            { text: "Basarse únicamente en opiniones personales encontradas en foros.", correct: false },
-            { text: "Ignorar los documentos científicos por ser muy extensos.", correct: false }
-        ]
-    }
-];
-
-let activeQ = 0;
-let userFinalScore = 10.0;
-const penaltyValue = 1.0; // Penalización actualizada a 1 punto
-
-function startSummativeEval() {
-    document.getElementById('intro-eval').classList.add('d-none');
-    document.getElementById('quiz-area').classList.remove('d-none');
-    loadQuestion();
-}
-
-function loadQuestion() {
-    const qData = questionsDB[activeQ];
-    document.getElementById('q-number').innerText = `Pregunta ${activeQ + 1} de 5`;
-    document.getElementById('q-text').innerText = qData.question;
-    document.getElementById('live-score').innerText = `Puntos: ${userFinalScore.toFixed(1)}`;
-    
-    const grid = document.getElementById('options-grid');
-    grid.innerHTML = '';
-    
-    qData.options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'btn btn-outline-primary p-3 text-start shadow-sm';
-        btn.innerText = opt.text;
-        btn.onclick = () => {
-            if (opt.correct) {
-                activeQ++;
-                if (activeQ < questionsDB.length) {
-                    loadQuestion(); // Avanza visual y lógicamente
-                } else {
-                    finishQuiz();
-                }
-            } else {
-                // Aplicar penalización y activar círculo de repetición
-                userFinalScore = Math.max(0, userFinalScore - penaltyValue);
-                const modal = new bootstrap.Modal(document.getElementById('modalRetry'));
-                modal.show();
-            }
-        };
-        grid.appendChild(btn);
-    });
-}
-
-function resetToFirstQuestion() {
-    activeQ = 0; // Regreso físico a la pregunta 1
-    loadQuestion(); // Re-renderiza la vista de la evaluación
-}
-
-function finishQuiz() {
-    document.getElementById('quiz-area').classList.add('d-none');
-    document.getElementById('final-results').classList.remove('d-none');
-    document.getElementById('final-score-val').innerText = `${userFinalScore.toFixed(1)} / 10`;
-}
-    // Función para navegación directa desde el índice
-function goToSlide(target) {
-    // 1. Ocultar la diapositiva actual
-    const oldSlide = document.getElementById(`slide-${currentSlide}`);
-    if (oldSlide) {
-        oldSlide.classList.add('d-none');
-        oldSlide.setAttribute('aria-hidden', 'true');
-    }
-
-    // 2. Actualizar el índice global
-    currentSlide = target;
-
-    // 3. Mostrar la nueva diapositiva
-    const newSlide = document.getElementById(`slide-${currentSlide}`);
-    if (newSlide) {
-        newSlide.classList.remove('d-none');
-        newSlide.setAttribute('aria-hidden', 'false');
-        // Importante para DUA: Mover el foco a la nueva pantalla
-        newSlide.focus();
-    }
-
-    // 4. Actualizar el indicador de navegación superior
-    const indicator = document.getElementById('slide-indicator');
-    if (indicator) {
-        indicator.innerText = `Diapositiva ${currentSlide} de ${totalSlides}`;
-    }
-
-    // 5. Reinicializar actividades si es necesario
-    if (currentSlide === 13) initMatchGame();
-    if (currentSlide === 5) initSoup();
-}
-    // Función para exportar/imprimir el recurso completo
-function exportResource() {
-    // Breve mensaje de aviso al usuario (DUA: Feedback)
-    const confirmExport = confirm("Se abrirá la ventana de impresión. Para guardarlo como PDF, selecciona 'Guardar como PDF' en el destino de tu impresora.");
-    if (confirmExport) {
-        window.print();
-    }
-}
-
-// Actualización de goToSlide para asegurar foco y limpieza
-function goToSlide(n) {
-    document.querySelectorAll('.slide-frame').forEach(s => s.classList.add('d-none'));
-    const target = document.getElementById(`slide-${n}`);
-    if(target) {
-        target.classList.remove('d-none');
-        currentSlide = n;
-        document.getElementById('slide-indicator').innerText = `Pantalla ${n} de ${totalSlides}`;
-        target.focus();
-        // Cargar lógica de actividades específicas
-        if(n === 5) initSoup();
-        if(n === 13) initMatchGame();
-    }
-    }
-    </script>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mq14wkw6-ibv2rsv3j" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li class="active"> <a href="index.html" class="active main-node daddy">Portada</a>
+<ul class="other-section">
+<li> <a href="html/objetivos-.html" class="no-ch">Objetivos </a>
+</li>
+<li> <a href="html/menu-general.html" class="no-ch">Menú general</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/menu-tema-1.html" class="daddy">Menú Tema 1</a>
+<ul class="other-section">
+<li> <a href="html/historia.html" class="no-ch">HISTORIA</a>
+</li>
+<li> <a href="html/tema-1.html" class="daddy">Tema 1</a>
+<ul class="other-section">
+<li> <a href="html/actividades-tema-1.html" class="no-ch">Actividades Tema 1</a>
+</li>
+<li> <a href="html/evaluacion.html" class="no-ch">Evaluación</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li> <a href="html/menu-del-tema-2.html" class="daddy">Menú del Tema 2</a>
+<ul class="other-section">
+<li> <a href="html/historiografia.html" class="daddy">HISTORIOGRAFÍA</a>
+<ul class="other-section">
+<li> <a href="html/actividad.html" class="no-ch">Actividad</a>
+</li>
+<li> <a href="html/corrientes-historiograficas.html" class="daddy">Corrientes Historiográficas</a>
+<ul class="other-section">
+<li> <a href="html/actividad-2.html" class="no-ch">Actividad</a>
+</li>
+<li> <a href="html/actividad-3.html" class="no-ch">Actividad</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/teoria-de-la-historia.html" class="daddy">Teoría de la Historia</a>
+<ul class="other-section">
+<li> <a href="html/actividad-4.html" class="no-ch">Actividad</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/evaluacion-2.html" class="no-ch">Evaluación</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li> <a href="html/menu-del-tema-3.html" class="daddy">Menú del Tema 3</a>
+<ul class="other-section">
+<li> <a href="html/contenidos-teoricos.html" class="daddy">Contenidos Teóricos</a>
+<ul class="other-section">
+<li> <a href="html/1-origen-del-termino-cultura.html" class="daddy">1. Origen del término cultura.</a>
+<ul class="other-section">
+<li> <a href="html/portada-institucional.html" class="no-ch">Portada institucional</a>
+</li>
+<li> <a href="html/portada-del-recurso.html" class="no-ch">Portada del recurso</a>
+</li>
+<li> <a href="html/menu-de-contenidos.html" class="no-ch">Menú de contenidos</a>
+</li>
+<li> <a href="html/4-concepto-de-trabajo.html" class="no-ch">4. Concepto de trabajo</a>
+</li>
+<li> <a href="html/actividad-de-clasificar.html" class="no-ch">Actividad de clasificar</a>
+</li>
+<li> <a href="html/41-division-del-trabajo.html" class="no-ch">4.1. División del trabajo</a>
+</li>
+<li> <a href="html/identificando-dato-clave.html" class="no-ch">Identificando dato clave</a>
+</li>
+<li> <a href="html/42-el-trabajo-colaborativo-y-solidario.html" class="no-ch">4.2. El trabajo colaborativo y solidario.</a>
+</li>
+<li> <a href="html/cruzigrama.html" class="no-ch">cruzigrama</a>
+</li>
+<li> <a href="html/43-el-trabajo-como-produccion-simbolica.html" class="no-ch">4.3. El trabajo como producción simbólica.</a>
+</li>
+<li> <a href="html/arrastrar-y-soltar.html" class="no-ch">arrastrar y soltar</a>
+</li>
+<li> <a href="html/evaluacion-3.html" class="no-ch">Evaluación</a>
+</li>
+<li> <a href="html/fuentes-consultadas.html" class="no-ch">Fuentes consultadas.</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/2-de-la-antiguedad-hasta-la-edad-media.html" class="no-ch">2. De la Antigüedad hasta la Edad Media.</a>
+</li>
+<li> <a href="html/3-la-epoca-del-romanticismo-y-del-colonialismo-y-s.html" class="no-ch">3. La época del romanticismo y del colonialismo y su influencia en el significado de cultura.</a>
+</li>
+<li> <a href="html/4-cultura-y-civilizacion.html" class="no-ch">4. Cultura y civilización.</a>
+</li>
+<li> <a href="html/5-el-concepto-moderno-de-cultura.html" class="no-ch">5. El concepto moderno de cultura.</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/actividades-reflexivas.html" class="daddy">Actividades Reflexivas</a>
+<ul class="other-section">
+<li> <a href="html/actividad-n1.html" class="no-ch">Actividad N°1.</a>
+</li>
+<li> <a href="html/actividad-n2.html" class="no-ch">Actividad N°2.</a>
+</li>
+<li> <a href="html/actividad-n3.html" class="no-ch">Actividad N°3</a>
+</li>
+<li> <a href="html/actividad-n4.html" class="no-ch">Actividad N°4</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/preguntas-del-sabio.html" class="no-ch">Preguntas del Sabio</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/tema-4.html" class="daddy">Tema 4</a>
+<ul class="other-section">
+<li> <a href="html/portada-institucional-2.html" class="no-ch">Portada institucional</a>
+</li>
+<li> <a href="html/portada-del-recurso-2.html" class="no-ch">Portada del recurso</a>
+</li>
+<li> <a href="html/menu-de-contenidos-2.html" class="no-ch">Menú de contenidos</a>
+</li>
+<li> <a href="html/4-concepto-de-trabajo-2.html" class="no-ch">4. Concepto de trabajo</a>
+</li>
+<li> <a href="html/actividad-de-clasificar-2.html" class="no-ch">Actividad de clasificar</a>
+</li>
+<li> <a href="html/41-division-del-trabajo-2.html" class="no-ch">4.1. División del trabajo</a>
+</li>
+<li> <a href="html/identificando-dato-clave-2.html" class="no-ch">Identificando dato clave</a>
+</li>
+<li> <a href="html/42-el-trabajo-colaborativo-y-solidario-2.html" class="no-ch">4.2. El trabajo colaborativo y solidario.</a>
+</li>
+<li> <a href="html/cruzigrama-2.html" class="no-ch">cruzigrama</a>
+</li>
+<li> <a href="html/43-el-trabajo-como-produccion-simbolica-2.html" class="no-ch">4.3. El trabajo como producción simbólica.</a>
+</li>
+<li> <a href="html/arrastrar-y-soltar-2.html" class="no-ch">arrastrar y soltar</a>
+</li>
+<li> <a href="html/evaluacion-4.html" class="no-ch">Evaluación</a>
+</li>
+<li> <a href="html/fuentes-consultadas-2.html" class="no-ch">Fuentes consultadas.</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/menu-del-tema-5.html" class="daddy">Menú del Tema 5</a>
+<ul class="other-section">
+<li> <a href="html/tema-5-las-tecnica-y-la-etica-para-emplear-las-div.html" class="daddy">Tema 5: las técnica y la ética para emplear las diversas fuentes de consulta en una investigación</a>
+<ul class="other-section">
+<li> <a href="html/actividades.html" class="daddy">Actividades</a>
+<ul class="other-section">
+<li> <a href="html/reto.html" class="no-ch">Reto</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li> <a href="html/la-bibliografia.html" class="daddy">La Bibliografia</a>
+<ul class="other-section">
+<li> <a href="html/actividad-5.html" class="daddy">Actividad</a>
+<ul class="other-section">
+<li> <a href="html/reto-2.html" class="no-ch">Reto</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li> <a href="html/las-referencias-bibliograficas-.html" class="daddy">Las referencias bibliograficas  </a>
+<ul class="other-section">
+<li> <a href="html/actividad-6.html" class="daddy">Actividad</a>
+<ul class="other-section">
+<li> <a href="html/reto-3.html" class="no-ch">Reto</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li> <a href="html/el-plagio-y-la-parafrasis.html" class="daddy">El plagio y la parafrasis</a>
+<ul class="other-section">
+<li> <a href="html/actividad-7.html" class="no-ch">Actividad</a>
+</li>
+</ul>
+</li>
+<li> <a href="html/reto-4.html" class="no-ch">Reto</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav><main id="page-mq14wkw6-ibv2rsv3j" class="page"> <div id="exe-client-search" data-block-order-string="Caja %e" data-no-results-string="Sin resultados.">
+</div>
+<header class="main-header">
+<div class="package-header"><p class="package-title">Historia, Historiografía y Cultura: Métodos y Ética de la Investigación.</p>
+<p class="package-subtitle">Todo cambia con el tiempo, incluso el significado de las palabras.</p></div>
+<div class="page-header"><h1 class="page-title">Portada</h1></div>
+</header><div id="page-content-page-mq14wkw6-ibv2rsv3j" class="page-content">
+<article id="block-1780674970897-xdlm3mxxn" class="box no-header">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="theme/icons/diary_alt.png" alt="">
+</div>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1780674970887-xxqt68p5v" class="idevice_node text" data-idevice-path="idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-1780674970887-xxqt68p5v&quot;}">
+<div class="exe-text-template">
+    <h4 style="text-align: center;">      <img src="content/resources/UNL.png" width="300" height="168" alt="" /> <br /></h4>
+<h4 style="text-align: center;">Universidad Nacional de Loja<br />Facultad de la educación, el Arte y la Comunicación <br />Carrera de la Pedagogía de las Ciencias Experimentales Informática<br />ASIGNATURA: </h4>
+<p style="text-align: center;">Análisis y Diseño de Recursos Educativos.</p>
+<p style="text-align: center;"><strong>CICLO:</strong></p>
+<p style="text-align: center;">IV</p>
+<p style="text-align: center;"><strong>ESTUDIANTES: </strong></p>
+<p style="text-align: center;">Alfonso Chiriboga</p>
+<p style="text-align: center;">Carla Vaca </p>
+<p style="text-align: center;">Jonael Luna </p>
+<p style="text-align: center;">Diana Orozco</p>
+<p style="text-align: center;">Paula Rengel</p>
+<p> </p>
+</div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<span class="nav-button nav-button-left" aria-hidden="true"><span>Anterior</span></span>
+<a href="html/objetivos-.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-nc"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-nc/4.0/" class="license">Creative Commons: Reconocimiento - no comercial 4.0</a></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(nueva ventana)</span></span></a></p>
 </body>
 </html>
